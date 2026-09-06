@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Icon from "@/components/Icon";
-import { products, services, provinces } from "@/lib/site";
+import { products, services, provinces, contact } from "@/lib/site";
+import { useLeadSubmit } from "@/lib/useLeadSubmit";
 
 export default function CreditForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const { status, error, submit, reset } = useLeadSubmit("credit");
+  const submitted = status === "success";
 
   if (submitted) {
     return (
@@ -21,7 +22,7 @@ export default function CreditForm() {
           within two business days. We may request supporting documents such as
           company registration, VAT certificate, and bank details.
         </p>
-        <button onClick={() => setSubmitted(false)} className="btn-dark mt-8">
+        <button onClick={reset} className="btn-dark mt-8">
           Submit another application
         </button>
       </div>
@@ -32,10 +33,23 @@ export default function CreditForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setSubmitted(true);
+        void submit(e.currentTarget);
       }}
       className="rounded-4xl bg-cloud p-8 sm:p-10"
     >
+      {/* Honeypot: hidden from humans, catches bots. */}
+      <div aria-hidden className="hidden">
+        <label>
+          Company website
+          <input
+            type="text"
+            name="company_website"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
       {/* Company details */}
       <Fieldset title="Company details" icon="inventory">
         <Field label="Registered company name" name="company" required className="sm:col-span-2" />
@@ -167,8 +181,26 @@ export default function CreditForm() {
         </span>
       </label>
 
-      <button type="submit" className="btn-primary mt-7 w-full">
-        Submit credit application
+      {status === "error" && error && (
+        <p className="mt-6 rounded-2xl bg-amber/10 px-4 py-3 text-sm text-amber">
+          {error} You can also reach our credit desk on{" "}
+          <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`} className="underline">
+            {contact.phone}
+          </a>{" "}
+          or{" "}
+          <a href={`mailto:${contact.creditEmail}`} className="underline">
+            {contact.creditEmail}
+          </a>
+          .
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="btn-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {status === "submitting" ? "Submitting…" : "Submit credit application"}
       </button>
       <p className="mt-3 text-center text-xs text-smoke">
         Supporting documents (company registration, VAT certificate, bank

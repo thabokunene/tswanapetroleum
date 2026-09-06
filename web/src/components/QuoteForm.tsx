@@ -1,16 +1,26 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Icon from "@/components/Icon";
-import { products } from "@/lib/site";
+import { products, contact } from "@/lib/site";
+import { useLeadSubmit } from "@/lib/useLeadSubmit";
 
 function QuoteFormInner() {
   const params = useSearchParams();
-  const [submitted, setSubmitted] = useState(false);
+  const { status, error, submit, reset } = useLeadSubmit("quote");
+  const submitted = status === "success";
 
   const presetProduct = params.get("product") ?? "";
-  const presetVolume = params.get("volume")?.replace(/ L \/ kg| L/g, "") ?? "";
+  // Strip the trailing unit suffix (and any "1,000,000+" plus sign) that the
+  // estimator appends, leaving just the numeric value for the input.
+  const presetVolume =
+    params
+      .get("volume")
+      ?.replace(/\s*L\s*\/\s*kg\s*$/i, "")
+      .replace(/\s*L\s*$/i, "")
+      .replace(/\+$/, "")
+      .trim() ?? "";
   const presetProvince = params.get("province") ?? "";
   const presetDelivery = params.get("delivery") ?? "";
   const presetMessage = presetDelivery
@@ -32,7 +42,7 @@ function QuoteFormInner() {
           A member of our commercial supply team will be in touch within one
           business day. For urgent supply, call our 24/7 line.
         </p>
-        <button onClick={() => setSubmitted(false)} className="btn-dark mt-8">
+        <button onClick={reset} className="btn-dark mt-8">
           Submit another request
         </button>
       </div>
@@ -43,10 +53,23 @@ function QuoteFormInner() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setSubmitted(true);
+        void submit(e.currentTarget);
       }}
       className="rounded-4xl bg-cloud p-8 sm:p-10"
     >
+      {/* Honeypot: hidden from humans, catches bots. */}
+      <div aria-hidden className="hidden">
+        <label>
+          Company website
+          <input
+            type="text"
+            name="company_website"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
       <h2 className="text-2xl font-semibold tracking-tight text-carbon">
         Request a wholesale quote
       </h2>
@@ -100,8 +123,26 @@ function QuoteFormInner() {
         </div>
       </div>
 
-      <button type="submit" className="btn-primary mt-7 w-full">
-        Send request
+      {status === "error" && error && (
+        <p className="mt-6 rounded-2xl bg-amber/10 px-4 py-3 text-sm text-amber">
+          {error} You can also reach us on{" "}
+          <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`} className="underline">
+            {contact.phone}
+          </a>{" "}
+          or{" "}
+          <a href={`mailto:${contact.salesEmail}`} className="underline">
+            {contact.salesEmail}
+          </a>
+          .
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="btn-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {status === "submitting" ? "Sending…" : "Send request"}
       </button>
       <p className="mt-3 text-center text-xs text-smoke">
         By submitting, you agree to be contacted about your enquiry.
