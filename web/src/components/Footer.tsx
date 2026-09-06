@@ -17,6 +17,23 @@ export default function Footer() {
               Registered DMRE Wholesale Fuel License Holder · B-BBEE Level 1 ·
               SANS Compliant.
             </p>
+            <ul className="mt-4 space-y-2.5 text-[0.8rem]">
+              {[
+                { label: "About Us", href: "/about" },
+                { label: "Quality & Compliance", href: "/compliance" },
+                { label: "Just Energy Transition", href: "/sustainability" },
+                { label: "Corporate Social Investment", href: "/csi" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="transition-colors hover:text-carbon"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div>

@@ -12,6 +12,7 @@ export const nav = [
   },
   { label: "Quality & Compliance", href: "/compliance" },
   { label: "Just Energy Transition", href: "/sustainability" },
+  { label: "CSI", href: "/csi" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -399,5 +400,81 @@ export const compliancePoints = [
   {
     title: "Community Value Creation",
     desc: "Reinvesting in technical skills development across logistics and renewable energies within local communities.",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Corporate Social Investment (CSI)                                   */
+/* ------------------------------------------------------------------ */
+export const csiStats = [
+  { value: "1%", label: "of NPAT invested in community programmes" },
+  { value: "150+", label: "STEM bursaries & learnerships funded" },
+  { value: "9", label: "provinces reached through outreach" },
+  { value: "60%", label: "CSI spend directed to host communities" },
+];
+
+export const csiPillars = [
+  {
+    icon: "🎓",
+    title: "Education & Skills",
+    desc: "STEM bursaries, artisan learnerships, and driver-training academies that build the technical talent pipeline for South Africa's energy sector.",
+    points: [
+      "University bursaries in engineering, chemistry and logistics",
+      "Hazchem and Code-14 driver-training academy",
+      "School science-lab sponsorships in host communities",
+    ],
+  },
+  {
+    icon: "💼",
+    title: "Enterprise & Supplier Development",
+    desc: "Growing black-owned SMMEs across our supply chain through funding, mentorship, and preferential procurement.",
+    points: [
+      "Development funding for emerging transporters",
+      "Mentorship for youth- and women-owned enterprises",
+      "Preferential procurement from local SMMEs",
+    ],
+  },
+  {
+    icon: "🏘️",
+    title: "Community & Infrastructure",
+    desc: "Practical investment in the communities where we operate — from clean water to safety and energy access.",
+    points: [
+      "LPG access programmes reducing indoor-air pollution",
+      "Borehole, sanitation and clinic infrastructure support",
+      "Road-safety and fuel-handling awareness campaigns",
+    ],
+  },
+  {
+    icon: "🌱",
+    title: "Environment & Just Transition",
+    desc: "Community-level programmes that align economic upliftment with a lower-carbon future.",
+    points: [
+      "Green-skills training for the hydrogen economy",
+      "Tree-planting and land-rehabilitation drives",
+      "Renewable-energy pilots at community facilities",
+    ],
+  },
+];
+
+export const csiPrograms = [
+  {
+    tag: "Education",
+    title: "Tswana Future Engineers Bursary",
+    desc: "Full-cost bursaries for underrepresented youth studying engineering, chemistry and supply-chain management at South African universities.",
+  },
+  {
+    tag: "Skills",
+    title: "Driver & Artisan Academy",
+    desc: "Accredited Hazchem and Code-14 training that places graduates directly into our vetted transport network and partner fleets.",
+  },
+  {
+    tag: "Community",
+    title: "Clean-Energy Access Initiative",
+    desc: "Subsidised LPG cylinders and safe-handling training for households transitioning away from paraffin and coal.",
+  },
+  {
+    tag: "Enterprise",
+    title: "Emerging Transporter Programme",
+    desc: "Funding, mentorship and guaranteed offtake for black-owned road-tanker SMMEs entering the fuel-logistics market.",
   },
 ];
