@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CookiePreferencesButton from "@/components/CookiePreferencesButton";
 import { company, contact, products, sectors } from "@/lib/site";
 
 export default function Footer() {
@@ -102,7 +103,15 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} {company.legalName}. All Rights Reserved.
           </p>
-          <p>Licensed under the Petroleum Products Act (Act 120 of 1977).</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link href="/privacy-statement" className="transition-colors hover:text-carbon">
+              Privacy Statement
+            </Link>
+            <CookiePreferencesButton className="transition-colors hover:text-carbon">
+              Cookie Preferences
+            </CookiePreferencesButton>
+            <span>Licensed under the Petroleum Products Act (Act 120 of 1977).</span>
+          </div>
         </div>
       </div>
     </footer>

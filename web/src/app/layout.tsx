@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
+import Analytics from "@/components/Analytics";
 
 // Apple-style UI: Inter is the closest self-hosted substitute for SF Pro.
 // Loaded across the full weight range for large-and-light display headings.
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body>
         {children}
         <CookieConsent />
+        <Analytics />
       </body>
     </html>
   );

@@ -2,16 +2,21 @@
 
 import { useEffect, useState } from "react";
 import Icon from "@/components/Icon";
+import {
+  hasConsentDecision,
+  readConsent,
+  writeConsent,
+} from "@/lib/consent";
 
-const STORAGE_KEY = "tswana-cookie-consent";
-const PRIVACY_URL = "https://www.petronas.com/privacy-statement";
+const PRIVACY_URL = "/privacy-statement";
+export const OPEN_COOKIE_SETTINGS_EVENT = "tswana:open-cookie-settings";
 
-type Consent = {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-  timestamp: string;
-};
+/** Call from anywhere (e.g. a footer link) to reopen the cookie preferences. */
+export function openCookieSettings() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent(OPEN_COOKIE_SETTINGS_EVENT));
+  }
+}
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -21,32 +26,34 @@ export default function CookieConsent() {
 
   useEffect(() => {
     try {
-      if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
+      if (!hasConsentDecision()) setVisible(true);
     } catch {
-      // Storage blocked (private mode / cookies disabled): show the banner.
       setVisible(true);
     }
+
+    // Allow re-opening the preferences from elsewhere (footer link).
+    const reopen = () => {
+      const existing = readConsent();
+      if (existing) {
+        setAnalytics(existing.analytics);
+        setMarketing(existing.marketing);
+      }
+      setShowSettings(true);
+      setVisible(true);
+    };
+    window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, reopen);
+    return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, reopen);
   }, []);
 
-  function persist(consent: Omit<Consent, "timestamp">) {
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ ...consent, timestamp: new Date().toISOString() })
-      );
-    } catch {
-      /* ignore write failures */
-    }
+  function persist(consent: { analytics: boolean; marketing: boolean }) {
+    writeConsent(consent);
     setVisible(false);
     setShowSettings(false);
   }
 
-  const acceptAll = () =>
-    persist({ necessary: true, analytics: true, marketing: true });
-  const rejectAll = () =>
-    persist({ necessary: true, analytics: false, marketing: false });
-  const saveSettings = () =>
-    persist({ necessary: true, analytics, marketing });
+  const acceptAll = () => persist({ analytics: true, marketing: true });
+  const rejectAll = () => persist({ analytics: false, marketing: false });
+  const saveSettings = () => persist({ analytics, marketing });
 
   if (!visible) return null;
 
@@ -75,8 +82,6 @@ export default function CookieConsent() {
                 you accept the associated{" "}
                 <a
                   href={PRIVACY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="font-medium text-teal underline underline-offset-2 hover:text-teal-light"
                 >
                   Privacy Statement
