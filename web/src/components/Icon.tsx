@@ -30,7 +30,11 @@ export type IconName =
   | "mail"
   | "place"
   | "schedule"
-  | "shield";
+  | "shield"
+  | "public"
+  | "directions_boat"
+  | "account_balance"
+  | "policy";
 
 const paths: Record<IconName, React.ReactNode> = {
   local_gas_station: (
@@ -165,6 +169,35 @@ const paths: Record<IconName, React.ReactNode> = {
   ),
   shield: (
     <path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6z" />
+  ),
+  public: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3Z" />
+    </>
+  ),
+  directions_boat: (
+    <>
+      <path d="M4 18l-1.5-4.5a1 1 0 0 1 .9-1.3L12 11l7.6 1.2a1 1 0 0 1 .9 1.3L19 18" />
+      <path d="M12 11V5l4 2v3" />
+      <path d="M8 8h4" />
+      <path d="M3 20c1.2.8 2.5.8 3.7 0 1.2-.8 2.4-.8 3.6 0 1.2.8 2.4.8 3.6 0 1.2-.8 2.5-.8 3.7 0" />
+    </>
+  ),
+  account_balance: (
+    <>
+      <path d="M12 3 3 8h18z" />
+      <path d="M5 10v7M9.5 10v7M14.5 10v7M19 10v7" />
+      <path d="M3 20h18" />
+    </>
+  ),
+  policy: (
+    <>
+      <path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6z" />
+      <circle cx="11" cy="11" r="2.5" />
+      <path d="m12.8 12.8 2.2 2.2" />
+    </>
   ),
 };
 

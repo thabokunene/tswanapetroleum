@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import PageShell, { PageHero } from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
@@ -18,8 +19,30 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Products & Fuels"
         title="The energy of today. The fuels of tomorrow."
-        subtitle="A full portfolio supplied at wholesale scale, from conventional hydrocarbons to next-generation clean energy."
+        subtitle="A full portfolio supplied at wholesale scale, from imported crude cargoes to conventional hydrocarbons and next-generation clean energy."
       />
+
+      <section className="bg-white pt-8">
+        <div className="container-x">
+          <div className="relative aspect-[21/9] overflow-hidden rounded-4xl shadow-card">
+            <Image
+              src="/images/refinery-aerial.png"
+              alt="Modern oil refinery and petrochemical complex illuminated at twilight"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8 sm:p-10">
+              <p className="max-w-lg text-lg font-medium tracking-tight text-white sm:text-xl">
+                Imported, refined and delivered on spec, backed by an independent
+                Certificate of Analysis on every consignment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {productCategories.map((cat, ci) => {
         const items = products.filter((p) => p.category === cat.key);

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageShell, { PageHero } from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
@@ -7,7 +8,7 @@ import { values, strategicAnchors, company } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Tswana Petroleum Co. is an independent, wholly South African-owned bulk fuel wholesaler, logistics operator, and clean energy distributor operating under a DMRE wholesale license.",
+    "Tswana Petroleum Co. is an independent, wholly South African-owned importer and trader of crude oil and refined products, bulk fuel wholesaler, logistics operator, and clean energy distributor operating under a DMRE wholesale license.",
 };
 
 const facts = [
@@ -22,8 +23,8 @@ export default function AboutPage() {
     <PageShell>
       <PageHero
         eyebrow="About Us"
-        title="Wholesale energy solutions built for African industry."
-        subtitle="An independent, wholly South African-owned bulk fuel wholesaler, logistics operator, and clean energy distributor."
+        title="From global oilfields to African industry."
+        subtitle="An independent, wholly South African-owned importer and trader of crude and refined products, bulk fuel wholesaler, logistics operator, and clean energy distributor."
       />
 
       {/* Executive summary */}
@@ -34,22 +35,26 @@ export default function AboutPage() {
               <strong className="font-semibold text-carbon">
                 {company.tradingName}
               </strong>{" "}
-              is an independent, wholly South African-owned bulk fuel wholesaler,
-              logistics operator, and clean energy distributor. Operating under a
-              Department of Mineral Resources and Energy (DMRE) wholesale license,
-              we deliver liquid fuels, heavy industrial distillates, and
-              alternative gases across the mining, agriculture, manufacturing,
-              maritime, logistics, and retail reseller sectors of Southern Africa.
+              is an independent, wholly South African-owned importer and
+              international trader of crude oil and refined petroleum products,
+              bulk fuel wholesaler, logistics operator, and clean energy
+              distributor. Operating under a Department of Mineral Resources and
+              Energy (DMRE) wholesale license, we source cargoes from the
+              world&apos;s primary supply basins and deliver liquid fuels, heavy
+              industrial distillates, and alternative gases across the mining,
+              agriculture, manufacturing, maritime, logistics, and retail
+              reseller sectors of Southern Africa.
             </p>
           </Reveal>
           <Reveal delay={80}>
             <p>
               In a market defined by price volatility, supply bottlenecks, and
               evolving decarbonisation targets, we act as a strategic energy
-              partner, maintaining relationships with primary import terminals,
-              major local refiners, and pipeline operators to guarantee security
-              of supply, transparent pricing benchmarks, and SANS-certified
-              product integrity.
+              partner. Our trading desk connects Gulf, West African, North Sea
+              and US Gulf Coast cargoes with inland demand, while our
+              relationships with primary import terminals, refiners and pipeline
+              operators guarantee security of supply, transparent benchmark
+              pricing, and SANS-certified product integrity.
             </p>
           </Reveal>
           <Reveal delay={160}>
@@ -62,6 +67,30 @@ export default function AboutPage() {
               , maintaining robust conventional supply chains while building the
               commercial corridors for clean hydrogen and lower-carbon fuels.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Global reach image band */}
+      <section className="bg-white pb-4">
+        <div className="container-x">
+          <Reveal>
+            <div className="relative aspect-[21/9] overflow-hidden rounded-4xl shadow-card">
+              <Image
+                src="/images/global-trade.png"
+                alt="Global energy and shipping trade routes centred on Africa and the Middle East"
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/50 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-8 sm:p-10">
+                <p className="max-w-md text-lg font-medium tracking-tight text-white sm:text-xl">
+                  Sourcing across six primary basins, delivering to nine
+                  provinces and beyond.
+                </p>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

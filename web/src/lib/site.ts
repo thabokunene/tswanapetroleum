@@ -7,7 +7,66 @@ export const company = {
   jurisdiction: "Republic of South Africa",
 };
 
+/* ------------------------------------------------------------------ */
+/* Global trading & import positioning                                 */
+/* ------------------------------------------------------------------ */
+export const tradingIntro =
+  "Tswana Petroleum Co. is an importer and international trader of crude oil and refined petroleum products. We move volume from the world's primary supply basins to the African market, connecting Gulf, West African, North Sea and US Gulf Coast cargoes with inland demand through owned and partnered terminal, pipeline and road-tanker infrastructure.";
+
+export const importCapabilities: {
+  icon: IconName;
+  title: string;
+  detail: string;
+}[] = [
+  {
+    icon: "public",
+    title: "Crude Oil Importing",
+    detail:
+      "We source and import crude oil grades, from light sweet to medium sour, arranging CIF and FOB cargoes, chartering, and discharge at South African and regional import terminals.",
+  },
+  {
+    icon: "oil_barrel",
+    title: "Refined Product Trading",
+    detail:
+      "Physical trading of gasoil, gasoline, jet fuel, fuel oil and naphtha in cargo and parcel sizes, backed by rigorous quality verification and independent inspection at load and discharge.",
+  },
+  {
+    icon: "directions_boat",
+    title: "Marine Freight & Chartering",
+    detail:
+      "Vessel chartering from VLCC and Suezmax crude carriers to clean-product tankers, with laytime, demurrage and voyage management handled end to end.",
+  },
+  {
+    icon: "warehouse",
+    title: "Import Terminal & Storage",
+    detail:
+      "Discharge, bonded storage and throughput at coastal import terminals, with blending, tank-farm capacity and inland distribution into the hinterland.",
+  },
+  {
+    icon: "account_balance",
+    title: "Trade Finance & Structuring",
+    detail:
+      "Letters of credit, structured pre-payment and off-take agreements that unlock large cargoes while managing counterparty, price and currency risk.",
+  },
+  {
+    icon: "policy",
+    title: "Risk & Compliance",
+    detail:
+      "Full KYC, sanctions screening, customs and excise compliance, and price-risk hedging against Platts and ICE benchmarks on every transaction.",
+  },
+];
+
+export const sourcingOrigins: { region: string; note: string }[] = [
+  { region: "Arabian Gulf", note: "Medium sour crude & middle distillates" },
+  { region: "West Africa", note: "Light sweet crude grades" },
+  { region: "North Sea", note: "Benchmark light sweet crude" },
+  { region: "US Gulf Coast", note: "Crude & refined product cargoes" },
+  { region: "Mediterranean", note: "Gasoil, gasoline & fuel oil" },
+  { region: "India & Singapore", note: "Refined product arbitrage" },
+];
+
 export const nav = [
+  { label: "Trading & Importing", href: "/trading" },
   {
     label: "Products & Fuels",
     href: "/products",
@@ -70,6 +129,11 @@ export const brandArchitecture: {
     icon: "water_drop",
     items: ["Hydrogen (Green / Blue)", "LPG Bulk", "Autogas", "Biofuels"],
   },
+  {
+    group: "Crude & Traded Cargoes",
+    icon: "oil_barrel",
+    items: ["Crude Oil (Sweet / Sour)", "Gasoil Cargoes", "Fuel Oil", "Naphtha & Jet"],
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -80,7 +144,7 @@ export type SpecRow = { label: string; a: string; b?: string; method?: string };
 export type Product = {
   slug: string;
   icon: IconName;
-  category: "Conventional" | "Industrial" | "Clean Energy";
+  category: "Crude & Trading" | "Conventional" | "Industrial" | "Clean Energy";
   name: string;
   short: string;
   headline: string;
@@ -97,6 +161,46 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  {
+    slug: "crude-oil",
+    icon: "oil_barrel",
+    category: "Crude & Trading",
+    name: "Crude Oil (Imported Cargoes)",
+    short:
+      "Imported crude grades, from light sweet to medium sour, traded in cargo lots on CIF and FOB terms.",
+    headline: "Crude Oil Importing & Cargo Trading",
+    compliance: "Platts / ICE Benchmark Linked",
+    supply: "Cargo lots (Suezmax / VLCC), CIF & FOB terms",
+    spec: "API / sulphur graded",
+    intro:
+      "As an importer and physical trader of crude oil, Tswana Petroleum Co. sources cargoes from the world's primary supply basins and delivers them into the African market. We handle grade selection, chartering, discharge and inland distribution, backed by independent inspection at load and discharge and price-risk management against Platts and ICE benchmarks.",
+    applications: [
+      "Refinery and processing-plant feedstock supply",
+      "Blending-house and reprocessing operations",
+      "Regional traders and off-take partners",
+      "Strategic and commercial crude storage programmes",
+    ],
+    specColumns: ["Parameter", "Typical Range", "Basis", "Notes"],
+    specRows: [
+      { label: "API Gravity", a: "22° to 45°", b: "Light to medium", method: "ASTM D287" },
+      { label: "Sulphur Content", a: "0.1% to 3.5% m/m", b: "Sweet to sour", method: "ASTM D4294" },
+      { label: "Cargo Size", a: "80,000 to 300,000 MT", b: "Suezmax / VLCC", method: "Charter party" },
+      { label: "Delivery Terms", a: "CIF / FOB / DES", b: "Incoterms 2020", method: "Contract" },
+      { label: "Inspection", a: "Independent at load & discharge", b: "SGS / Intertek", method: "Q&Q survey" },
+    ],
+    bullets: [
+      {
+        title: "How We Trade Crude",
+        items: [
+          "Grade selection matched to refinery yield and demand",
+          "Vessel chartering, laytime and demurrage management",
+          "Letters of credit and structured trade finance",
+          "Full KYC, sanctions screening and Incoterms structuring",
+          "Price hedging against Dated Brent and ICE benchmarks",
+        ],
+      },
+    ],
+  },
   {
     slug: "diesel",
     icon: "local_gas_station",
@@ -302,6 +406,7 @@ export const products: Product[] = [
 ];
 
 export const productCategories = [
+  { key: "Crude & Trading", label: "Crude & Traded Cargoes" },
   { key: "Conventional", label: "Conventional Fuels" },
   { key: "Industrial", label: "Industrial Heavy Fuels" },
   { key: "Clean Energy", label: "Next-Gen & Clean Energy" },
@@ -411,6 +516,12 @@ export const advantages: {
   detail: string;
 }[] = [
   {
+    icon: "public",
+    title: "Global Sourcing & Importing",
+    detail:
+      "As an importer of crude and refined products, we originate cargoes from six primary international basins, insulating clients from local refinery outages and single-source risk.",
+  },
+  {
     icon: "hub",
     title: "Multi-Point Depot Off-Take",
     detail:
@@ -449,10 +560,17 @@ export const advantages: {
 ];
 
 export const heroStats = [
+  { value: "6", label: "Global Supply Basins" },
+  { value: "VLCC", label: "Cargo Chartering Scale" },
   { value: "100% SANS", label: "Quality Specification" },
   { value: "Level 1", label: "B-BBEE Procurement" },
-  { value: "10,000L+", label: "Bulk Delivery Run" },
-  { value: "Nationwide", label: "Logistics Coverage" },
+];
+
+export const globalStats = [
+  { value: "6", label: "international sourcing basins" },
+  { value: "2M+", label: "barrels per cargo capability" },
+  { value: "24/7", label: "trading & operations desk" },
+  { value: "Platts / ICE", label: "benchmark-linked pricing" },
 ];
 
 export const sectors = [
@@ -462,6 +580,8 @@ export const sectors = [
   "Manufacturing & Heavy Boilers",
   "Retail Forecourt Operators",
   "Maritime & Bunkering",
+  "Refineries & Reprocessing",
+  "International Traders & Off-takers",
 ];
 
 export const compliancePoints = [

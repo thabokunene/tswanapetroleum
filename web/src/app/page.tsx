@@ -11,6 +11,9 @@ import {
   brandArchitecture,
   compliancePoints,
   services,
+  importCapabilities,
+  sourcingOrigins,
+  tradingIntro,
 } from "@/lib/site";
 
 export default function Home() {
@@ -29,15 +32,16 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy/55 to-navy-deep/85" />
         <div className="container-narrow relative py-32">
           <p className="animate-fade-up text-sm font-semibold uppercase tracking-[0.14em] text-teal-light">
-            Wholesale Energy · World-Class Standards
+            Global Sourcing · World-Class Standards
           </p>
           <h1 className="mt-5 animate-fade-up display-2xl text-white">
-            The energy behind Africa&apos;s industrial engine.
+            From the world&apos;s oilfields to Africa&apos;s industrial engine.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl animate-fade-up text-xl font-normal leading-relaxed text-white/80 sm:text-2xl">
-            Bulk diesel, petrol, industrial fuel oils, LPG and hydrogen,
-            delivered across South Africa. Fully licensed, SANS-certified, and
-            supply-secure.
+            An importer and international trader of crude oil and refined
+            products, delivering bulk diesel, petrol, industrial fuel oils, LPG
+            and hydrogen across Southern Africa. Fully licensed, SANS-certified,
+            and supply-secure.
           </p>
           <div className="mt-9 flex animate-fade-up flex-wrap items-center justify-center gap-4">
             <Link href="/products" className="btn-primary">
@@ -63,6 +67,87 @@ export default function Home() {
               <div className="mt-2 text-sm text-smoke">{s.label}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* GLOBAL TRADING & IMPORT */}
+      <section id="trading" className="section bg-navy-deep text-white">
+        <div className="container-x">
+          <div className="grid items-center gap-14 lg:grid-cols-2">
+            <Reveal>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-teal-light">
+                Crude &amp; Product Importing
+              </p>
+              <h2 className="mt-4 display-lg text-white">
+                A global desk with African reach.
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-white/75">
+                {tradingIntro}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link href="/trading" className="btn-primary">
+                  Explore our trading desk
+                </Link>
+                <Link
+                  href="/contact"
+                  className="link-arrow text-white hover:text-teal-light"
+                >
+                  Discuss a cargo
+                  <Icon name="chevron_right" size={18} />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
+                <Image
+                  src="/images/crude-tanker-port.png"
+                  alt="Crude oil supertanker berthed at a marine import terminal at dawn"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {importCapabilities.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 90}>
+                <div className="h-full rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition-all duration-500 ease-apple hover:bg-white/[0.07]">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/15 text-teal-light">
+                    <Icon name={c.icon} size={26} />
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-white/65">
+                    {c.detail}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={100}>
+            <div className="mt-14 rounded-4xl border border-white/10 bg-white/[0.03] p-8 sm:p-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-teal-light">
+                Where we source
+              </p>
+              <div className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+                {sourcingOrigins.map((o) => (
+                  <div key={o.region} className="flex items-start gap-3">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-light" />
+                    <div>
+                      <div className="font-semibold tracking-tight text-white">
+                        {o.region}
+                      </div>
+                      <div className="text-sm text-white/55">{o.note}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

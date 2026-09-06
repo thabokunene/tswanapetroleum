@@ -73,8 +73,8 @@ export default function SustainabilityPage() {
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
               <Image
-                src="/images/sustainability.png"
-                alt="Green hydrogen and renewable energy project in the Northern Cape"
+                src="/images/hydrogen-facility.png"
+                alt="Green hydrogen production facility with solar and wind power"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
