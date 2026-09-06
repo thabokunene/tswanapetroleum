@@ -3,30 +3,31 @@ import { contact } from "@/lib/site";
 
 export default function CTASection() {
   return (
-    <section className="section">
-      <div className="container-x">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient px-8 py-16 text-white md:px-16 md:py-20">
-          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-teal-light/20 blur-3xl" />
-          <div className="relative max-w-3xl">
-            <p className="eyebrow bg-white/15 text-white">Let&apos;s Fuel Your Business</p>
-            <h2 className="mt-5 heading-lg text-white">
-              Whether you need 10,000 litres or 10 million, we deliver — on time,
-              on spec, and on budget.
-            </h2>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-amber">
-                Request a Quote
-              </Link>
-              <Link href="/estimator" className="btn-outline">
-                Bulk Order Estimator
-              </Link>
-              <a href={`mailto:${contact.supplyEmail}`} className="btn-outline">
-                Become a Supply Partner
-              </a>
-            </div>
-          </div>
+    <section className="section bg-white">
+      <div className="container-narrow text-center">
+        <p className="eyebrow">Let&apos;s fuel your business</p>
+        <h2 className="mt-4 display-lg">
+          From 10,000 litres to 10 million.
+          <br />
+          <span className="text-smoke">On time. On spec. On budget.</span>
+        </h2>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <Link href="/contact" className="btn-primary">
+            Request a quote
+          </Link>
+          <Link href="/estimator" className="btn-dark">
+            Bulk order estimator
+          </Link>
         </div>
+        <p className="mt-6 text-sm text-smoke">
+          Prefer to talk?{" "}
+          <a
+            href={`mailto:${contact.supplyEmail}`}
+            className="text-teal hover:underline"
+          >
+            {contact.supplyEmail}
+          </a>
+        </p>
       </div>
     </section>
   );

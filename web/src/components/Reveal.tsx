@@ -24,7 +24,7 @@ export default function Reveal({
           obs.disconnect();
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.15 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -34,8 +34,8 @@ export default function Reveal({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out ${
-        shown ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      className={`transition-all duration-[900ms] ease-apple ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       } ${className}`}
     >
       {children}

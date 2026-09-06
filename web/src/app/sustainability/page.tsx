@@ -63,14 +63,14 @@ export default function SustainabilityPage() {
     <PageShell>
       <PageHero
         eyebrow="Just Energy Transition"
-        title="The Energy of Today. The Fuels of Tomorrow."
-        subtitle="Our Just Energy Transition Strategy balances the immediate need for reliable fossil fuels with a long-term commitment to decarbonisation."
+        title="The energy of today. The fuels of tomorrow."
+        subtitle="Balancing the immediate need for reliable fossil fuels with a long-term commitment to decarbonisation."
       />
 
-      <section className="section">
+      <section className="section bg-white">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-card">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
               <Image
                 src="/images/sustainability.png"
                 alt="Green hydrogen and renewable energy project in the Northern Cape"
@@ -81,40 +81,40 @@ export default function SustainabilityPage() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <p className="font-body text-lg leading-relaxed text-carbon/80">
-              Aligned with the South African Department of Science and
-              Innovation&apos;s <strong className="text-navy">Hydrogen Society
-              Roadmap (HSRM)</strong>, Tswana Petroleum Co. is positioning itself
-              at the leading edge of commercial clean energy supply — while
-              maintaining the ultra-reliable conventional fuel chains our clients
-              depend on today.
+            <p className="text-lg leading-relaxed text-smoke">
+              Aligned with the Department of Science and Innovation&apos;s{" "}
+              <strong className="font-semibold text-carbon">
+                Hydrogen Society Roadmap (HSRM)
+              </strong>
+              , we are positioning at the leading edge of commercial clean energy
+              supply — while maintaining the ultra-reliable conventional fuel
+              chains our clients depend on today.
             </p>
-            <blockquote className="mt-8 border-l-4 border-teal pl-6 font-body text-xl font-medium italic text-navy">
-              &ldquo;We believe the same energy that powers South Africa&apos;s
-              economy must also protect its future.&rdquo;
+            <blockquote className="mt-8 border-l-2 border-teal pl-6 text-2xl font-medium leading-snug tracking-tight text-carbon">
+              &ldquo;The same energy that powers South Africa&apos;s economy must
+              also protect its future.&rdquo;
             </blockquote>
           </Reveal>
         </div>
       </section>
 
-      {/* Roadmap */}
-      <section className="section bg-white">
+      <section className="section bg-mist">
         <div className="container-x">
-          <Reveal className="max-w-2xl">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Clean Energy Roadmap</p>
-            <h2 className="mt-4 heading-lg">Building the supply corridors</h2>
+            <h2 className="mt-4 display-lg">Building the supply corridors.</h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-16 grid gap-5 lg:grid-cols-3">
             {roadmap.map((r, i) => (
               <Reveal key={r.phase} delay={i * 100}>
-                <div className="card card-hover h-full">
-                  <span className="font-heading text-sm font-bold uppercase tracking-wide text-teal">
+                <div className="card card-hover h-full bg-white">
+                  <span className="text-sm font-semibold uppercase tracking-wide text-teal">
                     {r.phase}
                   </span>
-                  <h3 className="mt-2 font-heading text-xl font-semibold text-navy">
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-carbon">
                     {r.title}
                   </h3>
-                  <p className="mt-2 font-body text-sm leading-relaxed text-carbon/70">
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-smoke">
                     {r.desc}
                   </p>
                 </div>
@@ -124,26 +124,25 @@ export default function SustainabilityPage() {
         </div>
       </section>
 
-      {/* ESG pillars */}
-      <section className="section">
+      <section className="section bg-white">
         <div className="container-x">
-          <Reveal className="max-w-2xl">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Our ESG Commitments</p>
-            <h2 className="mt-4 heading-lg">Three pillars, one responsibility</h2>
+            <h2 className="mt-4 display-lg">Three pillars, one responsibility.</h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-16 grid gap-5 lg:grid-cols-3">
             {pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
-                <div className="card card-hover h-full">
+                <div className="card card-hover h-full bg-cloud">
                   <span className="text-4xl">{p.icon}</span>
-                  <h3 className="mt-4 font-heading text-xl font-semibold text-navy">
+                  <h3 className="mt-5 text-xl font-semibold tracking-tight text-carbon">
                     {p.title}
                   </h3>
                   <ul className="mt-4 space-y-3">
                     {p.points.map((pt) => (
                       <li key={pt} className="flex items-start gap-3">
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
-                        <span className="font-body text-sm leading-relaxed text-carbon/80">
+                        <span className="text-[0.95rem] leading-relaxed text-smoke">
                           {pt}
                         </span>
                       </li>

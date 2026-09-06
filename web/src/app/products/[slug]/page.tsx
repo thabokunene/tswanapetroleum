@@ -36,92 +36,91 @@ export default function ProductDetail({
 
   return (
     <PageShell>
-      {/* Header */}
-      <section className="relative overflow-hidden bg-brand-gradient-soft py-20 text-white md:py-28">
-        <div className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-teal-light/20 blur-3xl" />
-        <div className="container-x relative">
-          <Link
-            href="/products"
-            className="font-heading text-sm font-semibold text-white/70 hover:text-white"
-          >
-            ← All products
-          </Link>
-          <div className="mt-6 flex items-center gap-4">
-            <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 text-4xl">
+      {/* Hero — centered Apple product style */}
+      <section className="bg-mist pt-24 pb-16 text-center md:pt-32 md:pb-20">
+        <div className="container-narrow">
+          <Reveal>
+            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-white text-4xl shadow-soft">
               {product.icon}
             </span>
-            <span className="rounded-full bg-white/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
-              {product.spec}
-            </span>
-          </div>
-          <h1 className="mt-6 heading-xl max-w-4xl">{product.headline}</h1>
-          <p className="mt-6 max-w-2xl font-body text-lg text-white/85">
-            {product.intro}
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <span className="rounded-lg bg-white/10 px-4 py-2 font-body text-sm text-white">
-              <strong className="font-heading font-semibold">Compliance:</strong>{" "}
-              {product.compliance}
-            </span>
-            <span className="rounded-lg bg-white/10 px-4 py-2 font-body text-sm text-white">
-              <strong className="font-heading font-semibold">Supply:</strong>{" "}
-              {product.supply}
-            </span>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/contact" className="btn-amber">
-              Request a Quote
-            </Link>
-            <Link href="/estimator" className="btn-outline">
-              Estimate Bulk Volume
-            </Link>
-            {product.specColumns && (
-              <Link href={`/products/${product.slug}/tds`} className="btn-outline">
-                Technical Data Sheet
+            <p className="mt-6 eyebrow">{product.spec}</p>
+            <h1 className="mt-3 display-xl text-carbon">{product.headline}</h1>
+            <p className="mx-auto mt-6 max-w-2xl lead">{product.intro}</p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link href="/contact" className="btn-primary">
+                Request a quote
               </Link>
-            )}
+              {product.specColumns && (
+                <Link
+                  href={`/products/${product.slug}/tds`}
+                  className="btn-dark"
+                >
+                  Technical data sheet
+                </Link>
+              )}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Compliance / supply meta strip */}
+      <section className="border-b border-black/[0.06] bg-white">
+        <div className="container-x grid gap-6 py-10 sm:grid-cols-2">
+          <div className="text-center sm:text-left">
+            <div className="text-xs uppercase tracking-wide text-smoke">
+              Compliance
+            </div>
+            <div className="mt-1 text-lg font-semibold tracking-tight text-carbon">
+              {product.compliance}
+            </div>
+          </div>
+          <div className="text-center sm:text-left">
+            <div className="text-xs uppercase tracking-wide text-smoke">
+              Supply
+            </div>
+            <div className="mt-1 text-lg font-semibold tracking-tight text-carbon">
+              {product.supply}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Spec matrix */}
       {product.specColumns && product.specRows && (
-        <section className="section">
+        <section className="section bg-white">
           <div className="container-x">
             <Reveal>
-              <p className="eyebrow">Technical Specification Matrix</p>
-              <h2 className="mt-4 heading-lg">Verified performance parameters</h2>
-              <div className="mt-8">
+              <p className="eyebrow">Technical Specification</p>
+              <h2 className="mt-4 display-lg">Verified performance parameters.</h2>
+              <div className="mt-10 overflow-x-auto rounded-3xl bg-cloud p-2 sm:p-6">
                 <SpecTable
                   columns={product.specColumns}
                   rows={product.specRows}
                 />
               </div>
-              <p className="mt-4 font-body text-sm text-carbon/60">
-                Typical values shown. Independent Certificate of Analysis (CoA)
-                accompanies every consignment before offloading.
+              <p className="mt-4 text-sm text-smoke">
+                Typical values shown. An independent Certificate of Analysis
+                (CoA) accompanies every consignment before offloading.
               </p>
             </Reveal>
           </div>
         </section>
       )}
 
-      {/* Applications + bullet groups */}
-      <section className="section bg-white">
+      {/* Applications + highlights */}
+      <section className="section bg-mist">
         <div className="container-x grid gap-14 lg:grid-cols-2">
           <Reveal>
-            <h2 className="font-heading text-2xl font-semibold text-navy">
-              Typical Applications
+            <h2 className="text-2xl font-semibold tracking-tight text-carbon">
+              Typical applications
             </h2>
             <ul className="mt-6 space-y-4">
               {product.applications.map((a) => (
                 <li key={a} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-xs text-white">
                     ✓
                   </span>
-                  <span className="font-body text-lg text-carbon/80">{a}</span>
+                  <span className="text-[1.05rem] text-carbon">{a}</span>
                 </li>
               ))}
             </ul>
@@ -129,15 +128,15 @@ export default function ProductDetail({
 
           <Reveal delay={120} className="space-y-6">
             {product.bullets?.map((b) => (
-              <div key={b.title} className="rounded-2xl bg-cloud p-8">
-                <h2 className="font-heading text-2xl font-semibold text-navy">
+              <div key={b.title} className="rounded-3xl bg-white p-8 shadow-soft">
+                <h2 className="text-xl font-semibold tracking-tight text-carbon">
                   {b.title}
                 </h2>
-                <ul className="mt-6 space-y-4">
+                <ul className="mt-5 space-y-3.5">
                   {b.items.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-teal" />
-                      <span className="font-body text-carbon/80">{item}</span>
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
+                      <span className="text-[0.95rem] text-smoke">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -148,27 +147,27 @@ export default function ProductDetail({
       </section>
 
       {/* Other products */}
-      <section className="section">
+      <section className="section bg-white">
         <div className="container-x">
-          <h2 className="heading-lg">Explore other products</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="display-lg">Explore other products.</h2>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((p) => (
               <Link
                 key={p.slug}
                 href={`/products/${p.slug}`}
-                className="card card-hover group flex h-full flex-col"
+                className="card card-hover group flex h-full flex-col bg-cloud"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10 text-2xl">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-xl shadow-soft">
                   {p.icon}
                 </span>
-                <h3 className="mt-5 font-heading text-xl font-semibold text-navy">
+                <h3 className="mt-5 text-lg font-semibold tracking-tight text-carbon">
                   {p.name}
                 </h3>
-                <p className="mt-2 flex-1 font-body text-sm leading-relaxed text-carbon/70">
+                <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-smoke">
                   {p.short}
                 </p>
-                <span className="mt-5 font-heading text-sm font-semibold text-teal transition-transform group-hover:translate-x-1">
-                  View specifications →
+                <span className="link-arrow mt-5">
+                  View specifications <span aria-hidden>›</span>
                 </span>
               </Link>
             ))}

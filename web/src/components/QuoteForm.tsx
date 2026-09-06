@@ -20,18 +20,18 @@ function QuoteFormInner() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl bg-brand-gradient p-12 text-center text-white">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 text-3xl">
+      <div className="flex flex-col items-center justify-center rounded-4xl bg-cloud p-12 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-teal text-3xl text-white">
           ✓
         </span>
-        <h3 className="mt-6 text-2xl font-semibold">
-          Thank you — request received.
+        <h3 className="mt-6 text-2xl font-semibold tracking-tight text-carbon">
+          Request received.
         </h3>
-        <p className="mt-3 max-w-sm font-body text-white/85">
+        <p className="mt-3 max-w-sm text-smoke">
           A member of our commercial supply team will be in touch within one
           business day. For urgent supply, call our 24/7 line.
         </p>
-        <button onClick={() => setSubmitted(false)} className="btn-outline mt-8">
+        <button onClick={() => setSubmitted(false)} className="btn-dark mt-8">
           Submit another request
         </button>
       </div>
@@ -44,15 +44,17 @@ function QuoteFormInner() {
         e.preventDefault();
         setSubmitted(true);
       }}
-      className="rounded-3xl border border-navy/5 bg-white p-8 shadow-card"
+      className="rounded-4xl bg-cloud p-8 sm:p-10"
     >
-      <h2 className="text-2xl font-semibold text-navy">Request a Wholesale Quote</h2>
-      <p className="mt-2 font-body text-sm text-carbon/60">
+      <h2 className="text-2xl font-semibold tracking-tight text-carbon">
+        Request a wholesale quote
+      </h2>
+      <p className="mt-2 text-sm text-smoke">
         Tell us what you need and we&apos;ll respond with CEF / BFP-aligned
         pricing.
       </p>
 
-      <div className="mt-6 grid gap-5 sm:grid-cols-2">
+      <div className="mt-7 grid gap-5 sm:grid-cols-2">
         <Field label="Full name" name="name" required />
         <Field label="Company" name="company" required />
         <Field label="Email" name="email" type="email" required />
@@ -62,7 +64,7 @@ function QuoteFormInner() {
           <Label>Product of interest</Label>
           <select
             name="product"
-            className="mt-1.5 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
+            className="input"
             defaultValue={presetProduct || ""}
           >
             <option value="" disabled>
@@ -92,17 +94,36 @@ function QuoteFormInner() {
             rows={4}
             defaultValue={presetMessage}
             placeholder="Delivery location, timing, and any special requirements…"
-            className="mt-1.5 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
+            className="input resize-none"
           />
         </div>
       </div>
 
       <button type="submit" className="btn-primary mt-7 w-full">
-        Send Request
+        Send request
       </button>
-      <p className="mt-3 text-center font-body text-xs text-carbon/50">
+      <p className="mt-3 text-center text-xs text-smoke">
         By submitting, you agree to be contacted about your enquiry.
       </p>
+
+      <style jsx>{`
+        :global(.input) {
+          margin-top: 0.375rem;
+          width: 100%;
+          border-radius: 0.875rem;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          background: #fff;
+          padding: 0.75rem 1rem;
+          font-size: 0.95rem;
+          color: #1d1d1f;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        :global(.input:focus) {
+          border-color: #00a3a1;
+          box-shadow: 0 0 0 3px rgba(0, 163, 161, 0.15);
+        }
+      `}</style>
     </form>
   );
 }
@@ -111,8 +132,8 @@ export default function QuoteForm() {
   return (
     <Suspense
       fallback={
-        <div className="rounded-3xl border border-navy/5 bg-white p-8 shadow-card">
-          <div className="h-6 w-48 animate-pulse rounded bg-cloud" />
+        <div className="rounded-4xl bg-cloud p-10">
+          <div className="h-6 w-48 animate-pulse rounded bg-white" />
         </div>
       }
     >
@@ -123,7 +144,7 @@ export default function QuoteForm() {
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <label className="text-xs font-bold uppercase tracking-wide text-carbon/60">
+    <label className="text-xs font-medium uppercase tracking-wide text-smoke">
       {children}
     </label>
   );
@@ -158,7 +179,7 @@ function Field({
         required={required}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className="mt-1.5 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
+        className="input"
       />
     </div>
   );

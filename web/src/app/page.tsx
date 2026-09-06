@@ -14,8 +14,8 @@ import {
 export default function Home() {
   return (
     <PageShell>
-      {/* HERO */}
-      <section className="relative flex min-h-[92vh] items-center overflow-hidden">
+      {/* HERO — full-bleed, centered Apple statement */}
+      <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden text-center">
         <Image
           src="/images/hero-tanker.png"
           alt="Tswana Petroleum tanker on a South African highway at golden hour"
@@ -24,75 +24,68 @@ export default function Home() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy/85 to-navy/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-transparent to-transparent" />
-        <div className="container-x relative py-32">
-          <div className="max-w-2xl">
-            <p className="eyebrow animate-fade-up bg-white/10 text-white">
-              Wholesale Energy · World-Class Standards
-            </p>
-            <h1 className="mt-6 animate-fade-up heading-xl text-white">
-              The Energy Behind Africa&apos;s{" "}
-              <span className="text-gradient">Industrial Engine.</span>
-            </h1>
-            <p className="mt-6 max-w-xl animate-fade-up font-body text-lg font-light leading-relaxed text-cloud">
-              Tswana Petroleum Co. delivers bulk diesel, petrol, industrial fuel
-              oils, LPG, and hydrogen across South Africa. Fully licensed,
-              SANS-certified, and backed by resilient multi-terminal wholesale
-              logistics.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Link href="/products" className="btn-primary">
-                Explore Product Range
-              </Link>
-              <Link href="/contact" className="btn-outline">
-                Become a Supply Partner
-              </Link>
-            </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy/55 to-navy-deep/85" />
+        <div className="container-narrow relative py-32">
+          <p className="animate-fade-up text-sm font-semibold uppercase tracking-[0.14em] text-teal-light">
+            Wholesale Energy · World-Class Standards
+          </p>
+          <h1 className="mt-5 animate-fade-up display-2xl text-white">
+            The energy behind Africa&apos;s industrial engine.
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl animate-fade-up text-xl font-normal leading-relaxed text-white/80 sm:text-2xl">
+            Bulk diesel, petrol, industrial fuel oils, LPG and hydrogen —
+            delivered across South Africa. Fully licensed, SANS-certified, and
+            supply-secure.
+          </p>
+          <div className="mt-9 flex animate-fade-up flex-wrap items-center justify-center gap-4">
+            <Link href="/products" className="btn-primary">
+              Explore the range
+            </Link>
+            <Link
+              href="/contact"
+              className="link-arrow text-white hover:text-teal-light"
+            >
+              Become a supply partner <span aria-hidden>›</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* MICRO-STATS BAR */}
-      <section className="relative z-10 bg-navy">
-        <div className="container-x grid grid-cols-2 divide-white/10 py-8 md:grid-cols-4 md:divide-x">
+      {/* STATS — clean centered figures on white */}
+      <section className="border-b border-black/[0.06] bg-white">
+        <div className="container-x grid grid-cols-2 gap-y-10 py-16 md:grid-cols-4">
           {heroStats.map((s) => (
-            <div key={s.label} className="px-4 py-3 text-center">
-              <div className="font-heading text-2xl font-semibold text-teal-light sm:text-3xl">
-                {s.value}
-              </div>
-              <div className="mt-1 font-body text-sm text-white/70">
-                {s.label}
-              </div>
+            <div key={s.label} className="text-center">
+              <div className="display-lg text-teal">{s.value}</div>
+              <div className="mt-2 text-sm text-smoke">{s.label}</div>
             </div>
           ))}
         </div>
-        <div className="gradient-rule" />
       </section>
 
-      {/* WHOLESALE ADVANTAGE */}
-      <section id="advantage" className="section">
+      {/* STATEMENT + BENTO ADVANTAGE */}
+      <section id="advantage" className="section bg-mist">
         <div className="container-x">
-          <Reveal className="max-w-3xl">
+          <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow">The Wholesale Advantage</p>
-            <h2 className="mt-4 heading-lg">
-              Engineered for supply security. Built for commercial scale.
+            <h2 className="mt-4 display-lg">
+              Engineered for supply security.
+              <br />
+              <span className="text-smoke">Built for commercial scale.</span>
             </h2>
-            <p className="mt-4 font-body text-lg text-carbon/70">
-              When production schedules, freight operations, and heavy machinery
-              cannot afford downtime, industry leaders rely on Tswana Petroleum
-              Co.
-            </p>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div className="mt-16 grid gap-5 md:grid-cols-3">
             {advantages.map((a, i) => (
-              <Reveal key={a.title} delay={(i % 3) * 90}>
-                <div className="card card-hover h-full">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10 text-2xl">
+              <Reveal key={a.title} delay={(i % 3) * 100}>
+                <div className="card card-hover h-full bg-white">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-2xl">
                     {a.icon}
                   </span>
-                  <h3 className="mt-5 card-title text-xl">{a.title}</h3>
-                  <p className="mt-2 font-body text-sm leading-relaxed text-carbon/70">
+                  <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
+                    {a.title}
+                  </h3>
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-smoke">
                     {a.detail}
                   </p>
                 </div>
@@ -102,36 +95,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BRAND ARCHITECTURE / PRODUCT GROUPS */}
+      {/* PRODUCT SHOWCASE — big statement + horizon groups */}
       <section id="products" className="section bg-white">
         <div className="container-x">
-          <Reveal className="max-w-3xl">
-            <p className="eyebrow">Products & Fuels</p>
-            <h2 className="mt-4 heading-lg">
-              One partner across three energy horizons
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow">Products &amp; Fuels</p>
+            <h2 className="mt-4 display-lg">
+              One partner across three energy horizons.
             </h2>
-            <p className="mt-4 font-body text-lg text-carbon/70">
+            <p className="mx-auto mt-5 max-w-2xl lead">
               From conventional hydrocarbons to industrial heavy fuels and
-              next-generation clean energy — a full portfolio supplied at
-              wholesale scale.
+              next-generation clean energy.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-16 grid gap-5 lg:grid-cols-3">
             {brandArchitecture.map((group, i) => (
               <Reveal key={group.group} delay={i * 100}>
-                <div className="h-full rounded-2xl border border-navy/10 bg-cloud p-7">
+                <div className="card h-full bg-cloud">
                   <span className="text-3xl">{group.icon}</span>
-                  <h3 className="mt-4 font-heading text-lg font-semibold uppercase tracking-wide text-navy">
+                  <h3 className="mt-4 text-lg font-semibold tracking-tight text-carbon">
                     {group.group}
                   </h3>
-                  <ul className="mt-4 space-y-2">
+                  <ul className="mt-4 space-y-2.5">
                     {group.items.map((it) => (
                       <li
                         key={it}
-                        className="flex items-center gap-2 font-body text-sm text-carbon/80"
+                        className="flex items-center gap-2.5 text-[0.95rem] text-smoke"
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                        <span className="h-1 w-1 rounded-full bg-teal" />
                         {it}
                       </li>
                     ))}
@@ -141,29 +133,29 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p, i) => (
               <Reveal key={p.slug} delay={(i % 3) * 90}>
                 <Link
                   href={`/products/${p.slug}`}
-                  className="card card-hover group flex h-full flex-col"
+                  className="card card-hover group flex h-full flex-col bg-cloud"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10 text-2xl">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-xl shadow-soft">
                       {p.icon}
                     </span>
-                    <span className="rounded-full bg-cloud px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-teal">
+                    <span className="text-xs font-medium text-smoke">
                       {p.spec}
                     </span>
                   </div>
-                  <h3 className="mt-5 font-heading text-xl font-semibold text-navy">
+                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-carbon">
                     {p.name}
                   </h3>
-                  <p className="mt-2 flex-1 font-body text-sm leading-relaxed text-carbon/70">
+                  <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-smoke">
                     {p.short}
                   </p>
-                  <span className="mt-5 font-heading text-sm font-semibold text-teal transition-transform group-hover:translate-x-1">
-                    View specifications →
+                  <span className="link-arrow mt-5">
+                    View specifications <span aria-hidden>›</span>
                   </span>
                 </Link>
               </Reveal>
@@ -172,40 +164,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BULK ESTIMATOR TEASER */}
-      <section className="section bg-brand-gradient text-white">
-        <div className="container-x grid items-center gap-10 lg:grid-cols-2">
+      {/* ESTIMATOR — dark full-bleed statement */}
+      <section className="section bg-carbon text-white">
+        <div className="container-narrow text-center">
           <Reveal>
-            <p className="eyebrow bg-white/15 text-white">Bulk Order Estimator</p>
-            <h2 className="mt-4 heading-lg text-white">
-              Calculate your wholesale supply requirements
-            </h2>
-            <p className="mt-4 font-body text-lg text-white/85">
-              Select your fuel type, volume, and delivery province to request
-              immediate wholesale pricing tied to CEF and Basic Fuel Price (BFP)
-              mechanics.
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-teal-light">
+              Bulk Order Estimator
             </p>
-            <Link href="/estimator" className="btn-amber mt-8">
-              Open the Estimator
+            <h2 className="mt-4 display-lg text-white">
+              Your wholesale requirement, priced in a tap.
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-xl leading-relaxed text-white/70">
+              Select your fuel, volume and delivery province for pricing tied
+              directly to CEF and Basic Fuel Price mechanics.
+            </p>
+            <Link href="/estimator" className="btn-primary mt-9">
+              Open the estimator
             </Link>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="grid grid-cols-2 gap-4">
+
+          <Reveal delay={150}>
+            <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-4">
               {[
-                { k: "Product", v: "6 fuel categories" },
-                { k: "Volume", v: "10k – 1M+ L / kg" },
-                { k: "Coverage", v: "All 9 provinces" },
-                { k: "Delivery", v: "DAP or FOB" },
+                { k: "Product", v: "6 fuels" },
+                { k: "Volume", v: "10k–1M+" },
+                { k: "Coverage", v: "9 provinces" },
+                { k: "Delivery", v: "DAP · FOB" },
               ].map((c) => (
-                <div
-                  key={c.k}
-                  className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur"
-                >
-                  <div className="font-body text-xs uppercase tracking-wide text-white/60">
-                    {c.k}
-                  </div>
-                  <div className="mt-1 font-heading text-lg font-semibold text-white">
+                <div key={c.k} className="bg-carbon p-6">
+                  <div className="text-2xl font-semibold tracking-tight text-teal-light">
                     {c.v}
+                  </div>
+                  <div className="mt-1 text-xs uppercase tracking-wide text-white/50">
+                    {c.k}
                   </div>
                 </div>
               ))}
@@ -214,11 +205,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMPLIANCE & ESG */}
-      <section className="section bg-cloud">
+      {/* COMPLIANCE / ESG — image + points */}
+      <section className="section bg-mist">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-card">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
               <Image
                 src="/images/sustainability.png"
                 alt="Green hydrogen and renewable energy project in the Northern Cape"
@@ -229,30 +220,27 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <p className="eyebrow">Compliance, Safety & ESG</p>
-            <h2 className="mt-4 heading-lg">
-              Zero compromise: safety, environment &amp; governance
-            </h2>
-            <p className="mt-5 font-body text-lg leading-relaxed text-carbon/80">
-              Petroleum logistics demands absolute operational discipline. We
-              operate under a strict Integrated Health, Safety, Environment, and
-              Quality (HSEQ) management framework aligned with international best
-              practice.
+            <p className="eyebrow">Compliance, Safety &amp; ESG</p>
+            <h2 className="mt-4 display-lg">Zero compromise.</h2>
+            <p className="mt-5 text-lg leading-relaxed text-smoke">
+              We operate under a strict Integrated Health, Safety, Environment
+              and Quality framework aligned with international best practice.
             </p>
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-8 space-y-5">
               {compliancePoints.map((c) => (
                 <li key={c.title} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-xs text-white">
                     ✓
                   </span>
-                  <span className="font-body text-carbon/80">
-                    <strong className="text-navy">{c.title}:</strong> {c.desc}
+                  <span className="text-[0.95rem] leading-relaxed text-carbon">
+                    <strong className="font-semibold">{c.title}.</strong>{" "}
+                    <span className="text-smoke">{c.desc}</span>
                   </span>
                 </li>
               ))}
             </ul>
-            <Link href="/compliance" className="btn-ghost mt-8">
-              Explore quality &amp; compliance →
+            <Link href="/compliance" className="link-arrow mt-8">
+              Quality &amp; compliance <span aria-hidden>›</span>
             </Link>
           </Reveal>
         </div>

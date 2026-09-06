@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-// Body & technical data: Lato (per brand spec)
-import "@fontsource/lato/300.css";
-import "@fontsource/lato/400.css";
-import "@fontsource/lato/400-italic.css";
-import "@fontsource/lato/700.css";
-
-// Display & headers: Proxima Nova in production; Montserrat is the self-hosted
-// offline stand-in and sits second in the CSS font stack so the licensed
-// Proxima Nova takes over wherever it is available.
-import "@fontsource/montserrat/400.css";
-import "@fontsource/montserrat/600.css";
-import "@fontsource/montserrat/700.css";
+// Apple-style UI: Inter is the closest self-hosted substitute for SF Pro.
+// Loaded across the full weight range for large-and-light display headings.
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
+import "@fontsource/inter/900.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tswanapetroleum.co.za"),

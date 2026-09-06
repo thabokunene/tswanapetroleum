@@ -38,40 +38,39 @@ export default function ContactPage() {
     <PageShell>
       <PageHero
         eyebrow="Contact Us"
-        title="Let's Fuel Your Business."
-        subtitle="Whether you need 10,000 litres or 10 million, Tswana Petroleum Co. delivers — on time, on spec, and on budget."
+        title="Let's fuel your business."
+        subtitle="Whether you need 10,000 litres or 10 million — on time, on spec, and on budget."
       />
 
-      <section className="section">
+      <section className="section bg-white">
         <div className="container-x grid gap-14 lg:grid-cols-[1fr_1.3fr]">
           <div>
-            <h2 className="font-heading text-2xl font-semibold text-navy">
+            <h2 className="text-2xl font-semibold tracking-tight text-carbon">
               Get in touch
             </h2>
-            <p className="mt-3 font-body text-carbon/70">
-              Our commercial supply team responds to enquiries within one
-              business day. Emergency supply support is available around the
-              clock.
+            <p className="mt-3 text-smoke">
+              Our commercial supply team responds within one business day.
+              Emergency supply support is available around the clock.
             </p>
             <ul className="mt-8 space-y-5">
               {details.map((d) => (
                 <li key={d.label} className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-xl">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cloud text-xl">
                     {d.icon}
                   </span>
                   <div>
-                    <div className="font-body text-xs font-bold uppercase tracking-wide text-carbon/50">
+                    <div className="text-xs uppercase tracking-wide text-smoke">
                       {d.label}
                     </div>
                     {d.href ? (
                       <a
                         href={d.href}
-                        className="font-heading text-lg font-semibold text-navy hover:text-teal"
+                        className="text-lg font-medium tracking-tight text-carbon hover:text-teal"
                       >
                         {d.value}
                       </a>
                     ) : (
-                      <div className="font-heading text-lg font-semibold text-navy">
+                      <div className="text-lg font-medium tracking-tight text-carbon">
                         {d.value}
                       </div>
                     )}
@@ -80,11 +79,11 @@ export default function ContactPage() {
               ))}
             </ul>
 
-            <div className="mt-10 rounded-2xl bg-navy p-7 text-white">
-              <h3 className="font-heading text-lg font-semibold">
-                Become a Supply Partner
+            <div className="mt-10 rounded-3xl bg-carbon p-8 text-white">
+              <h3 className="text-lg font-semibold tracking-tight">
+                Become a supply partner
               </h3>
-              <p className="mt-2 font-body text-sm text-white/75">
+              <p className="mt-2 text-sm text-white/70">
                 Interested in off-take agreements or long-term contracts? Mention
                 it in your message and our partnerships team will be in touch.
               </p>

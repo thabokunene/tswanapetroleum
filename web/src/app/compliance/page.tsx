@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 };
 
 const credentials = [
-  { label: "DMRE Wholesale License", value: "Petroleum Products Act (Act 120 of 1977)" },
+  { label: "DMRE Wholesale License", value: "Act 120 of 1977" },
   { label: "NERSA", value: "Licensed" },
-  { label: "B-BBEE", value: "Level 1 Contributor · 135% recognition" },
-  { label: "Quality Standard", value: "100% SANS specification" },
+  { label: "B-BBEE", value: "Level 1 · 135%" },
+  { label: "Quality Standard", value: "100% SANS" },
 ];
 
 export default function CompliancePage() {
@@ -22,44 +22,40 @@ export default function CompliancePage() {
     <PageShell>
       <PageHero
         eyebrow="Quality & Compliance"
-        title="Zero Compromise: Safety, Environment & Governance"
-        subtitle="Petroleum logistics demands absolute operational discipline, backed by an Integrated HSEQ management framework aligned with international best practice."
+        title="Zero compromise on safety, environment and governance."
+        subtitle="Petroleum logistics demands absolute operational discipline, backed by an Integrated HSEQ framework aligned with international best practice."
       />
 
-      {/* Credentials strip */}
-      <section className="border-b border-navy/5 bg-white">
-        <div className="container-x grid gap-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Credentials */}
+      <section className="border-b border-black/[0.06] bg-white">
+        <div className="container-x grid gap-8 py-16 sm:grid-cols-2 lg:grid-cols-4">
           {credentials.map((c) => (
-            <div key={c.label} className="rounded-2xl bg-cloud p-6">
-              <div className="font-body text-xs font-bold uppercase tracking-wide text-carbon/50">
-                {c.label}
-              </div>
-              <div className="mt-2 font-heading text-base font-semibold text-navy">
-                {c.value}
-              </div>
+            <div key={c.label} className="text-center">
+              <div className="display-lg text-teal">{c.value}</div>
+              <div className="mt-2 text-sm text-smoke">{c.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="section">
+      <section className="section bg-mist">
         <div className="container-x">
-          <Reveal className="max-w-2xl">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Regulatory Framework</p>
-            <h2 className="mt-4 heading-lg">Licensed, certified, accountable</h2>
+            <h2 className="mt-4 display-lg">Licensed, certified, accountable.</h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="mt-16 grid gap-5 sm:grid-cols-2">
             {compliancePoints.map((c, i) => (
               <Reveal key={c.title} delay={(i % 2) * 90}>
-                <div className="card card-hover flex h-full items-start gap-4">
-                  <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal">
+                <div className="card card-hover flex h-full items-start gap-4 bg-white">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-xs text-white">
                     ✓
                   </span>
                   <div>
-                    <h3 className="font-heading text-lg font-semibold text-navy">
+                    <h3 className="text-lg font-semibold tracking-tight text-carbon">
                       {c.title}
                     </h3>
-                    <p className="mt-1 font-body text-sm leading-relaxed text-carbon/70">
+                    <p className="mt-1 text-[0.95rem] leading-relaxed text-smoke">
                       {c.desc}
                     </p>
                   </div>
@@ -70,25 +66,25 @@ export default function CompliancePage() {
         </div>
       </section>
 
-      <section className="section bg-navy text-white">
+      <section className="section bg-carbon text-white">
         <div className="container-x">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow bg-teal-light/15 text-teal-light">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-teal-light">
               Batch Assurance
             </p>
-            <h2 className="mt-4 heading-lg text-white">
-              SANS-certified integrity, from terminal to tank
+            <h2 className="mt-4 display-lg text-white">
+              Integrity from terminal to tank.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {advantages.map((a, i) => (
               <Reveal key={a.title} delay={(i % 3) * 90}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur transition-colors hover:border-teal-light/40 hover:bg-white/10">
+                <div className="h-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-colors duration-500 hover:bg-white/10">
                   <span className="text-3xl">{a.icon}</span>
-                  <h3 className="mt-4 font-heading text-lg font-semibold text-white">
+                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
                     {a.title}
                   </h3>
-                  <p className="mt-2 font-body text-sm leading-relaxed text-white/70">
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-white/60">
                     {a.detail}
                   </p>
                 </div>

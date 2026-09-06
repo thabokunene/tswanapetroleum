@@ -20,6 +20,8 @@ export default function BulkEstimator() {
   const [province, setProvince] = useState(provinces[0]);
   const [delivery, setDelivery] = useState(deliveryModes[0]);
 
+  const pct = ((volume - 10_000) / (1_000_000 - 10_000)) * 100;
+
   const quoteHref =
     `/contact?product=${encodeURIComponent(product)}` +
     `&volume=${encodeURIComponent(formatVolume(volume))}` +
@@ -27,17 +29,16 @@ export default function BulkEstimator() {
     `&delivery=${encodeURIComponent(delivery)}`;
 
   return (
-    <div className="rounded-3xl border border-navy/5 bg-white p-8 shadow-card md:p-10">
+    <div className="rounded-4xl bg-cloud p-8 sm:p-10">
       <div className="grid gap-8 md:grid-cols-2">
-        {/* Product category */}
         <div>
-          <label className="text-xs font-bold uppercase tracking-wide text-carbon/60">
-            1. Product category
+          <label className="text-xs font-medium uppercase tracking-wide text-smoke">
+            1 · Product category
           </label>
           <select
             value={product}
             onChange={(e) => setProduct(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
+            className="est-input"
           >
             {products.map((p) => (
               <option key={p.slug} value={p.name}>
@@ -47,15 +48,14 @@ export default function BulkEstimator() {
           </select>
         </div>
 
-        {/* Destination province */}
         <div>
-          <label className="text-xs font-bold uppercase tracking-wide text-carbon/60">
-            3. Destination province
+          <label className="text-xs font-medium uppercase tracking-wide text-smoke">
+            3 · Destination province
           </label>
           <select
             value={province}
             onChange={(e) => setProvince(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
+            className="est-input"
           >
             {provinces.map((p) => (
               <option key={p} value={p}>
@@ -65,13 +65,12 @@ export default function BulkEstimator() {
           </select>
         </div>
 
-        {/* Volume slider */}
         <div className="md:col-span-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-bold uppercase tracking-wide text-carbon/60">
-              2. Estimated monthly volume
+            <label className="text-xs font-medium uppercase tracking-wide text-smoke">
+              2 · Estimated monthly volume
             </label>
-            <span className="font-heading text-lg font-semibold text-teal">
+            <span className="text-lg font-semibold tracking-tight text-teal">
               {formatVolume(volume)}
             </span>
           </div>
@@ -82,23 +81,20 @@ export default function BulkEstimator() {
             step={10_000}
             value={volume}
             onChange={(e) => setVolume(Number(e.target.value))}
-            className="mt-4 h-2 w-full cursor-pointer appearance-none rounded-full bg-cloud accent-teal"
+            className="mt-4 h-1.5 w-full cursor-pointer appearance-none rounded-full accent-teal"
             style={{
-              background: `linear-gradient(90deg, #00A3A1 ${
-                ((volume - 10_000) / (1_000_000 - 10_000)) * 100
-              }%, #E2E8ED ${((volume - 10_000) / (1_000_000 - 10_000)) * 100}%)`,
+              background: `linear-gradient(90deg, #00A3A1 ${pct}%, #E2E2E7 ${pct}%)`,
             }}
           />
-          <div className="mt-1 flex justify-between text-xs text-carbon/50">
+          <div className="mt-1.5 flex justify-between text-xs text-smoke">
             <span>10,000 L</span>
             <span>1,000,000+ L / kg</span>
           </div>
         </div>
 
-        {/* Delivery mechanism */}
         <div className="md:col-span-2">
-          <label className="text-xs font-bold uppercase tracking-wide text-carbon/60">
-            4. Delivery mechanism
+          <label className="text-xs font-medium uppercase tracking-wide text-smoke">
+            4 · Delivery mechanism
           </label>
           <div className="mt-2 grid gap-3 sm:grid-cols-2">
             {deliveryModes.map((m) => (
@@ -106,10 +102,10 @@ export default function BulkEstimator() {
                 key={m}
                 type="button"
                 onClick={() => setDelivery(m)}
-                className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors ${
+                className={`rounded-2xl border px-4 py-3.5 text-left text-sm font-medium transition-all duration-300 ease-apple ${
                   delivery === m
-                    ? "border-teal bg-teal/10 text-navy"
-                    : "border-navy/15 bg-cloud text-carbon/70 hover:border-teal/40"
+                    ? "border-teal bg-white text-carbon shadow-soft"
+                    : "border-black/10 bg-white/50 text-smoke hover:border-teal/40"
                 }`}
               >
                 {m}
@@ -120,8 +116,27 @@ export default function BulkEstimator() {
       </div>
 
       <Link href={quoteHref} className="btn-primary mt-8 w-full">
-        Generate Commercial Quotation
+        Generate commercial quotation
       </Link>
+
+      <style jsx>{`
+        :global(.est-input) {
+          margin-top: 0.5rem;
+          width: 100%;
+          border-radius: 0.875rem;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          background: #fff;
+          padding: 0.75rem 1rem;
+          font-size: 0.95rem;
+          color: #1d1d1f;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        :global(.est-input:focus) {
+          border-color: #00a3a1;
+          box-shadow: 0 0 0 3px rgba(0, 163, 161, 0.15);
+        }
+      `}</style>
     </div>
   );
 }

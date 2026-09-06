@@ -6,31 +6,23 @@ export default function Logo({
 }: {
   variant?: "dark" | "light";
 }) {
-  const textColor = variant === "light" ? "text-white" : "text-navy";
-  const subColor = variant === "light" ? "text-teal-light" : "text-teal";
+  const textColor = variant === "light" ? "text-white" : "text-carbon";
   return (
-    <Link href="/" className="flex items-center gap-3">
-      <span className="relative block h-11 w-11 shrink-0">
+    <Link href="/" className="flex items-center gap-2.5">
+      <span className="relative block h-8 w-8 shrink-0">
         <Image
           src="/images/logo-mark.png"
           alt="Tswana Petroleum Co. logo"
           fill
-          sizes="44px"
+          sizes="32px"
           className="object-contain"
           priority
         />
       </span>
-      <span className="leading-none">
-        <span
-          className={`block font-heading text-lg font-bold tracking-tight ${textColor}`}
-        >
-          TSWANA
-        </span>
-        <span
-          className={`block font-heading text-[0.62rem] font-semibold uppercase tracking-[0.28em] ${subColor}`}
-        >
-          Petroleum Co.
-        </span>
+      <span
+        className={`text-[0.95rem] font-semibold tracking-tight ${textColor}`}
+      >
+        Tswana Petroleum
       </span>
     </Link>
   );
