@@ -18,10 +18,10 @@ export default function CTASection() {
               <Link href="/contact" className="btn-amber">
                 Request a Quote
               </Link>
-              <Link href="/products" className="btn-outline">
-                View Product Catalogue
+              <Link href="/estimator" className="btn-outline">
+                Bulk Order Estimator
               </Link>
-              <a href={`mailto:${contact.email}`} className="btn-outline">
+              <a href={`mailto:${contact.supplyEmail}`} className="btn-outline">
                 Become a Supply Partner
               </a>
             </div>

@@ -38,7 +38,7 @@ export default function Header() {
             </Link>
           ))}
           <Link href="/contact" className="btn-primary">
-            Request a Quote
+            Request a Wholesale Quote
           </Link>
         </nav>
 
@@ -73,7 +73,7 @@ export default function Header() {
               </Link>
             ))}
             <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary mt-2">
-              Request a Quote
+              Request a Wholesale Quote
             </Link>
           </div>
         </div>

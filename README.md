@@ -18,11 +18,21 @@ products.
 
 A responsive, animated multi-page site built entirely from the brand package:
 
-- **Home** — hero, stats, about snapshot, product grid, TSWANA values, the Tswana Advantage, sustainability teaser, CTA
-- **About** — full company story, mission, vision, core values
-- **Products** — catalogue + a detail page per product (diesel, petrol, LPG, hydrogen, HFO, LBF)
-- **Sustainability** — Just Energy Transition strategy and ESG pillars
-- **Contact** — details + an interactive "Request a Quote" form
+- **Home** — hero, micro-stats bar, the Wholesale Advantage, brand architecture + product grid, bulk-estimator teaser, compliance/ESG, CTA
+- **About** — executive summary, company overview, vision & mission, the Five Strategic Anchors, TSWANA pillars
+- **Products** — catalogue grouped by energy horizon + a detail page per product with a **technical specification matrix**
+- **Technical Data Sheets** — a printable/PDF-ready TDS per product (`/products/[slug]/tds`)
+- **Quality & Compliance** — regulatory framework, credentials, batch-assurance
+- **Just Energy Transition** — clean-energy roadmap and ESG pillars
+- **Bulk Order Estimator** — interactive fuel/volume/province/delivery selector that pre-fills the quote form
+- **Contact** — full contact desk + an interactive "Request a Quote" form
+
+### Typography
+
+Headings use **Proxima Nova** (with self-hosted **Montserrat** as the offline
+stand-in) and body copy uses **Lato**, per the brand spec — all self-hosted via
+`@fontsource`, so the site needs no external font CDN. See
+[`brand/brand-guidelines.md`](brand/brand-guidelines.md).
 
 ### Run it locally
 

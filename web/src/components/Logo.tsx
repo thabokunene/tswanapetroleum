@@ -21,10 +21,14 @@ export default function Logo({
         />
       </span>
       <span className="leading-none">
-        <span className={`block font-display text-lg font-extrabold tracking-tight ${textColor}`}>
+        <span
+          className={`block font-heading text-lg font-bold tracking-tight ${textColor}`}
+        >
           TSWANA
         </span>
-        <span className={`block text-[0.62rem] font-semibold uppercase tracking-[0.28em] ${subColor}`}>
+        <span
+          className={`block font-heading text-[0.62rem] font-semibold uppercase tracking-[0.28em] ${subColor}`}
+        >
           Petroleum Co.
         </span>
       </span>

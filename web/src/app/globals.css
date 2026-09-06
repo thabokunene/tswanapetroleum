@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --- Tswana Petroleum Co. Global Typography & Brand Tokens --- */
 :root {
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Sora", system-ui, sans-serif;
+  /* Fonts — Proxima Nova (headings) + Lato (body) per brand spec.
+     Montserrat is the self-hosted offline stand-in for Proxima Nova. */
+  --font-heading: "Proxima Nova", "Montserrat", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+
+  /* Petronas-inspired palette */
+  --tswana-teal: #00a3a1;
+  --deep-navy: #002855;
+  --energy-mint: #00c4b3;
+  --slate-charcoal: #2d3436;
+  --light-surface: #f4f7f9;
+  --pure-white: #ffffff;
 }
 
 html {
@@ -13,8 +26,22 @@ html {
 }
 
 body {
-  @apply bg-cloud text-navy antialiased;
-  font-family: var(--font-sans);
+  @apply bg-cloud text-carbon antialiased;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* --- Typographic hierarchy --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--deep-navy);
 }
 
 @layer components {
@@ -22,8 +49,10 @@ body {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
   }
 
+  /* Buttons — Proxima Nova SemiBold, uppercase, tracked */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.04em] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
+    font-family: var(--font-heading);
   }
 
   .btn-primary {
@@ -44,6 +73,7 @@ body {
 
   .eyebrow {
     @apply inline-flex items-center gap-2 rounded-full bg-teal/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-teal;
+    font-family: var(--font-heading);
   }
 
   .section {
@@ -51,11 +81,18 @@ body {
   }
 
   .heading-xl {
-    @apply font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl;
+    font-family: var(--font-heading);
+    @apply text-4xl font-bold leading-[1.15] tracking-[-0.02em] sm:text-5xl lg:text-[3.25rem];
   }
 
   .heading-lg {
-    @apply font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl;
+    font-family: var(--font-heading);
+    @apply text-3xl font-semibold leading-[1.25] tracking-[-0.01em] sm:text-4xl;
+  }
+
+  .lead {
+    font-family: var(--font-body);
+    @apply text-xl font-light leading-relaxed text-navy;
   }
 
   .card {
@@ -64,6 +101,11 @@ body {
 
   .card-hover:hover {
     @apply -translate-y-1 shadow-card-hover;
+  }
+
+  .card-title {
+    font-family: var(--font-heading);
+    @apply text-2xl font-semibold text-teal;
   }
 }
 
@@ -77,4 +119,20 @@ body {
 .gradient-rule {
   height: 4px;
   background: linear-gradient(90deg, #002855, #00a3a1, #00c4b3);
+}
+
+/* Spec-sheet / technical tables */
+.spec-table {
+  font-family: var(--font-body);
+  @apply w-full border-collapse text-sm;
+}
+.spec-table th {
+  font-family: var(--font-heading);
+  @apply bg-navy px-4 py-3 text-left font-semibold text-white;
+}
+.spec-table td {
+  @apply border-b border-navy/10 px-4 py-3 align-top text-carbon;
+}
+.spec-table tr:nth-child(even) td {
+  @apply bg-cloud;
 }

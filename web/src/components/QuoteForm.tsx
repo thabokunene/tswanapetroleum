@@ -1,10 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { products } from "@/lib/site";
 
-export default function QuoteForm() {
+function QuoteFormInner() {
+  const params = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
+
+  const presetProduct = params.get("product") ?? "";
+  const presetVolume = params.get("volume")?.replace(/ L \/ kg| L/g, "") ?? "";
+  const presetProvince = params.get("province") ?? "";
+  const presetDelivery = params.get("delivery") ?? "";
+  const presetMessage = presetDelivery
+    ? `Preferred delivery: ${presetDelivery}${
+        presetProvince ? ` · Destination: ${presetProvince}` : ""
+      }`
+    : "";
 
   if (submitted) {
     return (
@@ -12,18 +24,14 @@ export default function QuoteForm() {
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 text-3xl">
           ✓
         </span>
-        <h3 className="mt-6 font-display text-2xl font-bold">
+        <h3 className="mt-6 text-2xl font-semibold">
           Thank you — request received.
         </h3>
-        <p className="mt-3 max-w-sm text-white/85">
-          A member of our sales team will be in touch within one business day.
-          For urgent supply, call {" "}
-          <span className="font-semibold">our 24/7 line</span>.
+        <p className="mt-3 max-w-sm font-body text-white/85">
+          A member of our commercial supply team will be in touch within one
+          business day. For urgent supply, call our 24/7 line.
         </p>
-        <button
-          onClick={() => setSubmitted(false)}
-          className="btn-outline mt-8"
-        >
+        <button onClick={() => setSubmitted(false)} className="btn-outline mt-8">
           Submit another request
         </button>
       </div>
@@ -38,11 +46,9 @@ export default function QuoteForm() {
       }}
       className="rounded-3xl border border-navy/5 bg-white p-8 shadow-card"
     >
-      <h2 className="font-display text-2xl font-bold text-navy">
-        Request a Quote
-      </h2>
-      <p className="mt-2 text-sm text-carbon/60">
-        Tell us what you need and we&apos;ll get back to you with CEF-linked
+      <h2 className="text-2xl font-semibold text-navy">Request a Wholesale Quote</h2>
+      <p className="mt-2 font-body text-sm text-carbon/60">
+        Tell us what you need and we&apos;ll respond with CEF / BFP-aligned
         pricing.
       </p>
 
@@ -57,7 +63,7 @@ export default function QuoteForm() {
           <select
             name="product"
             className="mt-1.5 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
-            defaultValue=""
+            defaultValue={presetProduct || ""}
           >
             <option value="" disabled>
               Select a product…
@@ -72,9 +78,10 @@ export default function QuoteForm() {
         </div>
 
         <Field
-          label="Estimated volume (litres / month)"
+          label="Estimated volume (litres / kg per month)"
           name="volume"
           placeholder="e.g. 50,000"
+          defaultValue={presetVolume}
           className="sm:col-span-2"
         />
 
@@ -83,6 +90,7 @@ export default function QuoteForm() {
           <textarea
             name="message"
             rows={4}
+            defaultValue={presetMessage}
             placeholder="Delivery location, timing, and any special requirements…"
             className="mt-1.5 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
           />
@@ -92,10 +100,24 @@ export default function QuoteForm() {
       <button type="submit" className="btn-primary mt-7 w-full">
         Send Request
       </button>
-      <p className="mt-3 text-center text-xs text-carbon/50">
+      <p className="mt-3 text-center font-body text-xs text-carbon/50">
         By submitting, you agree to be contacted about your enquiry.
       </p>
     </form>
+  );
+}
+
+export default function QuoteForm() {
+  return (
+    <Suspense
+      fallback={
+        <div className="rounded-3xl border border-navy/5 bg-white p-8 shadow-card">
+          <div className="h-6 w-48 animate-pulse rounded bg-cloud" />
+        </div>
+      }
+    >
+      <QuoteFormInner />
+    </Suspense>
   );
 }
 
@@ -113,6 +135,7 @@ function Field({
   type = "text",
   required = false,
   placeholder,
+  defaultValue,
   className = "",
 }: {
   label: string;
@@ -120,6 +143,7 @@ function Field({
   type?: string;
   required?: boolean;
   placeholder?: string;
+  defaultValue?: string;
   className?: string;
 }) {
   return (
@@ -133,6 +157,7 @@ function Field({
         name={name}
         required={required}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className="mt-1.5 w-full rounded-xl border border-navy/15 bg-cloud px-4 py-3 text-sm text-navy outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
       />
     </div>

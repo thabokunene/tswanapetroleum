@@ -3,14 +3,13 @@ import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
-import { products, values, advantages } from "@/lib/site";
-
-const stats = [
-  { value: "6", label: "Energy products" },
-  { value: "9", label: "Provinces served" },
-  { value: "24/7", label: "Emergency supply" },
-  { value: "2035", label: "Clean-energy vision" },
-];
+import {
+  products,
+  advantages,
+  heroStats,
+  brandArchitecture,
+  compliancePoints,
+} from "@/lib/site";
 
 export default function Home() {
   return (
@@ -25,108 +24,123 @@ export default function Home() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy/80 to-navy/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy/85 to-navy/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-transparent to-transparent" />
         <div className="container-x relative py-32">
           <div className="max-w-2xl">
             <p className="eyebrow animate-fade-up bg-white/10 text-white">
               Wholesale Energy · World-Class Standards
             </p>
-            <h1 className="mt-6 animate-fade-up font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              One Supplier. Every Fuel.{" "}
-              <span className="text-gradient">Delivered.</span>
+            <h1 className="mt-6 animate-fade-up heading-xl text-white">
+              The Energy Behind Africa&apos;s{" "}
+              <span className="text-gradient">Industrial Engine.</span>
             </h1>
-            <p className="mt-6 max-w-xl animate-fade-up text-lg leading-relaxed text-white/85">
-              From the pumps to the plant floor — Tswana Petroleum Co. is your
-              single-source wholesale energy partner. Powering South Africa,
-              fuelling the future.
+            <p className="mt-6 max-w-xl animate-fade-up font-body text-lg font-light leading-relaxed text-cloud">
+              Tswana Petroleum Co. delivers bulk diesel, petrol, industrial fuel
+              oils, LPG, and hydrogen across South Africa. Fully licensed,
+              SANS-certified, and backed by resilient multi-terminal wholesale
+              logistics.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-amber">
-                Request a Quote
+              <Link href="/products" className="btn-primary">
+                Explore Product Range
               </Link>
-              <Link href="/products" className="btn-outline">
-                View Product Catalogue
+              <Link href="/contact" className="btn-outline">
+                Become a Supply Partner
               </Link>
             </div>
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0">
-          <div className="gradient-rule" />
-        </div>
       </section>
 
-      {/* STATS */}
-      <section className="border-b border-navy/5 bg-white">
-        <div className="container-x grid grid-cols-2 gap-6 py-12 md:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-4xl font-extrabold text-teal">
+      {/* MICRO-STATS BAR */}
+      <section className="relative z-10 bg-navy">
+        <div className="container-x grid grid-cols-2 divide-white/10 py-8 md:grid-cols-4 md:divide-x">
+          {heroStats.map((s) => (
+            <div key={s.label} className="px-4 py-3 text-center">
+              <div className="font-heading text-2xl font-semibold text-teal-light sm:text-3xl">
                 {s.value}
               </div>
-              <div className="mt-1 text-sm font-medium text-carbon/70">
+              <div className="mt-1 font-body text-sm text-white/70">
                 {s.label}
               </div>
             </div>
           ))}
         </div>
+        <div className="gradient-rule" />
       </section>
 
-      {/* INTRO / ABOUT SNAPSHOT */}
-      <section className="section">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2">
-          <Reveal>
-            <p className="eyebrow">Who We Are</p>
+      {/* WHOLESALE ADVANTAGE */}
+      <section id="advantage" className="section">
+        <div className="container-x">
+          <Reveal className="max-w-3xl">
+            <p className="eyebrow">The Wholesale Advantage</p>
             <h2 className="mt-4 heading-lg">
-              The energy behind every journey — rooted in South Africa,
-              scaling across the continent.
+              Engineered for supply security. Built for commercial scale.
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-carbon/80">
-              Tswana Petroleum Co. is a proudly South African wholesale
-              distributor of petroleum products, serving industries, retailers,
-              and commercial enterprises across the nation. From conventional
-              fuels to next-generation solutions like hydrogen, we deliver
-              reliable supply, competitive pricing, and uncompromising quality.
+            <p className="mt-4 font-body text-lg text-carbon/70">
+              When production schedules, freight operations, and heavy machinery
+              cannot afford downtime, industry leaders rely on Tswana Petroleum
+              Co.
             </p>
-            <p className="mt-4 text-lg font-semibold text-navy">
-              Because Africa&apos;s growth runs on energy.
-            </p>
-            <Link href="/about" className="btn-ghost mt-8">
-              Read our story →
-            </Link>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="grid gap-5 sm:grid-cols-2">
-              {[
-                { t: "Reliable Supply", d: "On-time delivery backed by strategic depots and a vetted tanker fleet." },
-                { t: "Regulatory Compliance", d: "Licensed, SANS-aligned, and B-BBEE compliant across every product." },
-                { t: "Product Integrity", d: "Certified quality with full traceability from refinery to forecourt." },
-                { t: "Just Energy Transition", d: "Investing in green hydrogen, LPG and low-carbon fuel solutions." },
-              ].map((c) => (
-                <div key={c.t} className="card card-hover">
-                  <h3 className="font-display text-lg font-bold text-navy">{c.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-carbon/70">{c.d}</p>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {advantages.map((a, i) => (
+              <Reveal key={a.title} delay={(i % 3) * 90}>
+                <div className="card card-hover h-full">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10 text-2xl">
+                    {a.icon}
+                  </span>
+                  <h3 className="mt-5 card-title text-xl">{a.title}</h3>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-carbon/70">
+                    {a.detail}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* PRODUCTS */}
+      {/* BRAND ARCHITECTURE / PRODUCT GROUPS */}
       <section id="products" className="section bg-white">
         <div className="container-x">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow">Products & Services</p>
+          <Reveal className="max-w-3xl">
+            <p className="eyebrow">Products & Fuels</p>
             <h2 className="mt-4 heading-lg">
-              A comprehensive portfolio of energy products
+              One partner across three energy horizons
             </h2>
-            <p className="mt-4 text-lg text-carbon/70">
-              Diesel, petrol, LPG, hydrogen, heavy furnace oil and light
-              blending fuel — supplied at wholesale scale to every sector of the
-              economy.
+            <p className="mt-4 font-body text-lg text-carbon/70">
+              From conventional hydrocarbons to industrial heavy fuels and
+              next-generation clean energy — a full portfolio supplied at
+              wholesale scale.
             </p>
           </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {brandArchitecture.map((group, i) => (
+              <Reveal key={group.group} delay={i * 100}>
+                <div className="h-full rounded-2xl border border-navy/10 bg-cloud p-7">
+                  <span className="text-3xl">{group.icon}</span>
+                  <h3 className="mt-4 font-heading text-lg font-semibold uppercase tracking-wide text-navy">
+                    {group.group}
+                  </h3>
+                  <ul className="mt-4 space-y-2">
+                    {group.items.map((it) => (
+                      <li
+                        key={it}
+                        className="flex items-center gap-2 font-body text-sm text-carbon/80"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p, i) => (
               <Reveal key={p.slug} delay={(i % 3) * 90}>
@@ -142,14 +156,14 @@ export default function Home() {
                       {p.spec}
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-xl font-bold text-navy">
+                  <h3 className="mt-5 font-heading text-xl font-semibold text-navy">
                     {p.name}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-carbon/70">
+                  <p className="mt-2 flex-1 font-body text-sm leading-relaxed text-carbon/70">
                     {p.short}
                   </p>
-                  <span className="mt-5 text-sm font-semibold text-teal transition-transform group-hover:translate-x-1">
-                    Explore product →
+                  <span className="mt-5 font-heading text-sm font-semibold text-teal transition-transform group-hover:translate-x-1">
+                    View specifications →
                   </span>
                 </Link>
               </Reveal>
@@ -158,66 +172,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VALUES */}
-      <section className="section">
-        <div className="container-x">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow">The TSWANA Pillars</p>
-            <h2 className="mt-4 heading-lg">Core values that carry every litre</h2>
+      {/* BULK ESTIMATOR TEASER */}
+      <section className="section bg-brand-gradient text-white">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-2">
+          <Reveal>
+            <p className="eyebrow bg-white/15 text-white">Bulk Order Estimator</p>
+            <h2 className="mt-4 heading-lg text-white">
+              Calculate your wholesale supply requirements
+            </h2>
+            <p className="mt-4 font-body text-lg text-white/85">
+              Select your fuel type, volume, and delivery province to request
+              immediate wholesale pricing tied to CEF and Basic Fuel Price (BFP)
+              mechanics.
+            </p>
+            <Link href="/estimator" className="btn-amber mt-8">
+              Open the Estimator
+            </Link>
           </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((v, i) => (
-              <Reveal key={v.value} delay={(i % 3) * 90}>
-                <div className="card card-hover flex h-full gap-5">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-gradient font-display text-2xl font-extrabold text-white">
-                    {v.letter}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-navy">
-                      {v.value}
-                    </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-carbon/70">
-                      {v.desc}
-                    </p>
+          <Reveal delay={120}>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { k: "Product", v: "6 fuel categories" },
+                { k: "Volume", v: "10k – 1M+ L / kg" },
+                { k: "Coverage", v: "All 9 provinces" },
+                { k: "Delivery", v: "DAP or FOB" },
+              ].map((c) => (
+                <div
+                  key={c.k}
+                  className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur"
+                >
+                  <div className="font-body text-xs uppercase tracking-wide text-white/60">
+                    {c.k}
+                  </div>
+                  <div className="mt-1 font-heading text-lg font-semibold text-white">
+                    {c.v}
                   </div>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ADVANTAGE */}
-      <section id="advantage" className="section bg-navy text-white">
-        <div className="container-x">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow bg-teal-light/15 text-teal-light">
-              🏆 The Tswana Advantage
-            </p>
-            <h2 className="mt-4 heading-lg text-white">
-              Why leading operators choose Tswana Petroleum Co.
-            </h2>
+              ))}
+            </div>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {advantages.map((a, i) => (
-              <Reveal key={a.title} delay={(i % 3) * 90}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur transition-colors hover:border-teal-light/40 hover:bg-white/10">
-                  <span className="text-3xl">{a.icon}</span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-white">
-                    {a.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">
-                    {a.detail}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* SUSTAINABILITY TEASER */}
-      <section className="section bg-white">
+      {/* COMPLIANCE & ESG */}
+      <section className="section bg-cloud">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-card">
@@ -231,22 +229,30 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <p className="eyebrow">Sustainability & ESG</p>
+            <p className="eyebrow">Compliance, Safety & ESG</p>
             <h2 className="mt-4 heading-lg">
-              Energising growth. Protecting the planet.
+              Zero compromise: safety, environment &amp; governance
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-carbon/80">
-              Our Just Energy Transition Strategy balances the immediate need for
-              reliable fossil fuels with a long-term commitment to
-              decarbonisation — reducing Scope 1 &amp; 2 emissions by 30% by 2030
-              and investing in green hydrogen infrastructure.
+            <p className="mt-5 font-body text-lg leading-relaxed text-carbon/80">
+              Petroleum logistics demands absolute operational discipline. We
+              operate under a strict Integrated Health, Safety, Environment, and
+              Quality (HSEQ) management framework aligned with international best
+              practice.
             </p>
-            <blockquote className="mt-6 border-l-4 border-teal pl-5 text-lg font-medium italic text-navy">
-              &ldquo;We believe the same energy that powers South Africa&apos;s
-              economy must also protect its future.&rdquo;
-            </blockquote>
-            <Link href="/sustainability" className="btn-ghost mt-8">
-              Explore our ESG commitments →
+            <ul className="mt-6 space-y-4">
+              {compliancePoints.map((c) => (
+                <li key={c.title} className="flex items-start gap-3">
+                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal">
+                    ✓
+                  </span>
+                  <span className="font-body text-carbon/80">
+                    <strong className="text-navy">{c.title}:</strong> {c.desc}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/compliance" className="btn-ghost mt-8">
+              Explore quality &amp; compliance →
             </Link>
           </Reveal>
         </div>
