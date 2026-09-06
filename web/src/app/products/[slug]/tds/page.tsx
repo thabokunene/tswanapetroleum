@@ -16,8 +16,8 @@ export function generateMetadata({
   const product = products.find((p) => p.slug === params.slug);
   if (!product) return { title: "Technical Data Sheet" };
   return {
-    title: `${product.name} — Technical Data Sheet`,
-    description: `Technical Data Sheet (TDS) for ${product.name} — ${product.compliance}.`,
+    title: `${product.name} Technical Data Sheet`,
+    description: `Technical Data Sheet (TDS) for ${product.name}, ${product.compliance}.`,
   };
 }
 

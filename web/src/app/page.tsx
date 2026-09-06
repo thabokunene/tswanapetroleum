@@ -3,18 +3,20 @@ import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
+import Icon from "@/components/Icon";
 import {
   products,
   advantages,
   heroStats,
   brandArchitecture,
   compliancePoints,
+  services,
 } from "@/lib/site";
 
 export default function Home() {
   return (
     <PageShell>
-      {/* HERO — full-bleed, centered Apple statement */}
+      {/* HERO */}
       <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden text-center">
         <Image
           src="/images/hero-tanker.png"
@@ -33,7 +35,7 @@ export default function Home() {
             The energy behind Africa&apos;s industrial engine.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl animate-fade-up text-xl font-normal leading-relaxed text-white/80 sm:text-2xl">
-            Bulk diesel, petrol, industrial fuel oils, LPG and hydrogen —
+            Bulk diesel, petrol, industrial fuel oils, LPG and hydrogen,
             delivered across South Africa. Fully licensed, SANS-certified, and
             supply-secure.
           </p>
@@ -45,13 +47,14 @@ export default function Home() {
               href="/contact"
               className="link-arrow text-white hover:text-teal-light"
             >
-              Become a supply partner <span aria-hidden>›</span>
+              Become a supply partner
+              <Icon name="chevron_right" size={18} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* STATS — clean centered figures on white */}
+      {/* STATS */}
       <section className="border-b border-black/[0.06] bg-white">
         <div className="container-x grid grid-cols-2 gap-y-10 py-16 md:grid-cols-4">
           {heroStats.map((s) => (
@@ -63,7 +66,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATEMENT + BENTO ADVANTAGE */}
+      {/* WHOLESALE ADVANTAGE */}
       <section id="advantage" className="section bg-mist">
         <div className="container-x">
           <Reveal className="mx-auto max-w-3xl text-center">
@@ -79,8 +82,8 @@ export default function Home() {
             {advantages.map((a, i) => (
               <Reveal key={a.title} delay={(i % 3) * 100}>
                 <div className="card card-hover h-full bg-white">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-2xl">
-                    {a.icon}
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                    <Icon name={a.icon} size={26} />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
                     {a.title}
@@ -95,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRODUCT SHOWCASE — big statement + horizon groups */}
+      {/* PRODUCT SHOWCASE */}
       <section id="products" className="section bg-white">
         <div className="container-x">
           <Reveal className="mx-auto max-w-3xl text-center">
@@ -113,7 +116,9 @@ export default function Home() {
             {brandArchitecture.map((group, i) => (
               <Reveal key={group.group} delay={i * 100}>
                 <div className="card h-full bg-cloud">
-                  <span className="text-3xl">{group.icon}</span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                    <Icon name={group.icon} size={26} />
+                  </span>
                   <h3 className="mt-4 text-lg font-semibold tracking-tight text-carbon">
                     {group.group}
                   </h3>
@@ -141,8 +146,8 @@ export default function Home() {
                   className="card card-hover group flex h-full flex-col bg-cloud"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-xl shadow-soft">
-                      {p.icon}
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                      <Icon name={p.icon} size={24} />
                     </span>
                     <span className="text-xs font-medium text-smoke">
                       {p.spec}
@@ -155,7 +160,8 @@ export default function Home() {
                     {p.short}
                   </p>
                   <span className="link-arrow mt-5">
-                    View specifications <span aria-hidden>›</span>
+                    View specifications
+                    <Icon name="chevron_right" size={18} />
                   </span>
                 </Link>
               </Reveal>
@@ -164,7 +170,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ESTIMATOR — dark full-bleed statement */}
+      {/* SERVICES */}
+      <section className="section bg-mist">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow">Integrated Services</p>
+            <h2 className="mt-4 display-lg">
+              Beyond the barrel, end to end.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl lead">
+              Storage, transportation and bonded-fuel handling that keep your
+              supply chain compliant and moving.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-5 md:grid-cols-3">
+            {services.map((s, i) => (
+              <Reveal key={s.slug} delay={i * 100}>
+                <Link
+                  href={`/services#${s.slug}`}
+                  className="card card-hover group flex h-full flex-col bg-white"
+                >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                    <Icon name={s.icon} size={26} />
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
+                    {s.name}
+                  </h3>
+                  <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-smoke">
+                    {s.short}
+                  </p>
+                  <span className="link-arrow mt-5">
+                    Learn more
+                    <Icon name="chevron_right" size={18} />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ESTIMATOR */}
       <section className="section bg-carbon text-white">
         <div className="container-narrow text-center">
           <Reveal>
@@ -187,7 +234,7 @@ export default function Home() {
             <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-4">
               {[
                 { k: "Product", v: "6 fuels" },
-                { k: "Volume", v: "10k–1M+" },
+                { k: "Volume", v: "10k to 1M+" },
                 { k: "Coverage", v: "9 provinces" },
                 { k: "Delivery", v: "DAP · FOB" },
               ].map((c) => (
@@ -205,7 +252,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMPLIANCE / ESG — image + points */}
+      {/* COMPLIANCE / ESG */}
       <section className="section bg-mist">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
@@ -229,8 +276,8 @@ export default function Home() {
             <ul className="mt-8 space-y-5">
               {compliancePoints.map((c) => (
                 <li key={c.title} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-xs text-white">
-                    ✓
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                    <Icon name="check" size={15} strokeWidth={2.25} />
                   </span>
                   <span className="text-[0.95rem] leading-relaxed text-carbon">
                     <strong className="font-semibold">{c.title}.</strong>{" "}
@@ -240,7 +287,8 @@ export default function Home() {
               ))}
             </ul>
             <Link href="/compliance" className="link-arrow mt-8">
-              Quality &amp; compliance <span aria-hidden>›</span>
+              Quality &amp; compliance
+              <Icon name="chevron_right" size={18} />
             </Link>
           </Reveal>
         </div>

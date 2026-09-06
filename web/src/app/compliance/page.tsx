@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageShell, { PageHero } from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
+import Icon from "@/components/Icon";
 import { compliancePoints, advantages } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -48,8 +49,8 @@ export default function CompliancePage() {
             {compliancePoints.map((c, i) => (
               <Reveal key={c.title} delay={(i % 2) * 90}>
                 <div className="card card-hover flex h-full items-start gap-4 bg-white">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-xs text-white">
-                    ✓
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                    <Icon name="check" size={16} strokeWidth={2.25} />
                   </span>
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight text-carbon">
@@ -80,7 +81,9 @@ export default function CompliancePage() {
             {advantages.map((a, i) => (
               <Reveal key={a.title} delay={(i % 3) * 90}>
                 <div className="h-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-colors duration-500 hover:bg-white/10">
-                  <span className="text-3xl">{a.icon}</span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal-light">
+                    <Icon name={a.icon} size={26} />
+                  </span>
                   <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
                     {a.title}
                   </h3>

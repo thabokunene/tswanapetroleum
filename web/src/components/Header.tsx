@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { nav } from "@/lib/site";
 
+const primaryNav = nav.filter((item) => item.href !== "/contact");
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -20,8 +22,8 @@ export default function Header() {
       <div className="container-x flex h-14 items-center justify-between">
         <Logo />
 
-        <nav className="hidden items-center gap-9 md:flex">
-          {nav.map((item) => (
+        <nav className="hidden items-center gap-6 lg:flex">
+          {primaryNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -41,7 +43,7 @@ export default function Header() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center text-carbon md:hidden"
+          className="flex h-9 w-9 items-center justify-center text-carbon lg:hidden"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             {open ? (
@@ -55,7 +57,7 @@ export default function Header() {
 
       {/* Mobile full-screen menu */}
       {open && (
-        <div className="border-t border-black/[0.06] bg-white/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-black/[0.06] bg-white/95 backdrop-blur-xl lg:hidden">
           <div className="container-x flex flex-col gap-1 py-6">
             {nav.map((item) => (
               <Link

@@ -46,7 +46,7 @@ export default function AboutPage() {
             <p>
               In a market defined by price volatility, supply bottlenecks, and
               evolving decarbonisation targets, we act as a strategic energy
-              partner — maintaining relationships with primary import terminals,
+              partner, maintaining relationships with primary import terminals,
               major local refiners, and pipeline operators to guarantee security
               of supply, transparent pricing benchmarks, and SANS-certified
               product integrity.
@@ -58,8 +58,8 @@ export default function AboutPage() {
               at the intersection of{" "}
               <strong className="font-semibold text-carbon">
                 tradition and innovation
-              </strong>{" "}
-              — maintaining robust conventional supply chains while building the
+              </strong>
+              , maintaining robust conventional supply chains while building the
               commercial corridors for clean hydrogen and lower-carbon fuels.
             </p>
           </Reveal>
@@ -91,8 +91,7 @@ export default function AboutPage() {
                 Our Vision
               </h3>
               <p className="mt-4 text-xl leading-relaxed tracking-tight text-carbon">
-                To be Southern Africa&apos;s premier indigenous energy wholesaler
-                — pioneering the secure distribution of conventional hydrocarbons
+                To be Southern Africa&apos;s premier indigenous energy wholesaler, pioneering the secure distribution of conventional hydrocarbons
                 while establishing the commercial supply corridors for clean
                 hydrogen and lower-carbon fuels.
               </p>

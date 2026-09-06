@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Tswana Petroleum Co.",
   },
   description:
-    "Tswana Petroleum Co. is a licensed South African bulk fuel wholesaler — diesel 50/500ppm, petrol, LPG, hydrogen, heavy furnace oil and light blending fuel — delivered on time, on spec, and on budget across Southern Africa.",
+    "Tswana Petroleum Co. is a licensed South African bulk fuel wholesaler of diesel 50/500ppm, petrol, LPG, hydrogen, heavy furnace oil and light blending fuel, delivered on time, on spec, and on budget across Southern Africa.",
   keywords: [
     "bulk diesel supplier South Africa",
     "wholesale petrol",

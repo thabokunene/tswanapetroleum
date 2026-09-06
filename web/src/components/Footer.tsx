@@ -20,9 +20,11 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-[0.8rem]">
               {[
                 { label: "About Us", href: "/about" },
+                { label: "Services", href: "/services" },
                 { label: "Quality & Compliance", href: "/compliance" },
                 { label: "Just Energy Transition", href: "/sustainability" },
                 { label: "Corporate Social Investment", href: "/csi" },
+                { label: "Credit Application", href: "/credit-application" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link

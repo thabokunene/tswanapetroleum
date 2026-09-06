@@ -4,12 +4,13 @@ import Link from "next/link";
 import PageShell, { PageHero } from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
+import Icon from "@/components/Icon";
 import { csiStats, csiPillars, csiPrograms } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Corporate Social Investment",
   description:
-    "Tswana Petroleum Co.'s Corporate Social Investment (CSI) programmes: education and skills, enterprise development, community infrastructure and a just energy transition for South African communities.",
+    "Tswana Petroleum Co.'s Corporate Social Investment (CSI) focuses on Education, Environment, and Access to Water in the communities where we operate.",
 };
 
 export default function CSIPage() {
@@ -18,7 +19,7 @@ export default function CSIPage() {
       <PageHero
         eyebrow="Corporate Social Investment"
         title="Energy that lifts communities."
-        subtitle="We reinvest in the people and places that power South Africa — building skills, enterprises and opportunity where we operate."
+        subtitle="We reinvest in the people and places that power South Africa, focusing on education, the environment, and access to water where we operate."
       />
 
       {/* Intro + image */}
@@ -41,14 +42,14 @@ export default function CSIPage() {
             <p className="mt-5 text-lg leading-relaxed text-smoke">
               As a 100% South African-owned energy wholesaler, we believe growth
               must be shared. Our Corporate Social Investment strategy channels
-              real resources into education, enterprise development and community
-              infrastructure — with a deliberate focus on the host communities
-              along our supply corridors.
+              real resources into three focus areas: education, the environment,
+              and access to water, with a deliberate focus on the host
+              communities where we operate.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-smoke">
               Every programme is designed to be measurable, locally led, and
-              aligned with our Just Energy Transition — creating the skills and
-              enterprises that a lower-carbon economy will depend on.
+              aligned with our Just Energy Transition, creating the skills and
+              resilience that a lower-carbon economy will depend on.
             </p>
           </Reveal>
         </div>
@@ -73,14 +74,14 @@ export default function CSIPage() {
         <div className="container-x">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Our Focus Areas</p>
-            <h2 className="mt-4 display-lg">Four pillars of investment.</h2>
+            <h2 className="mt-4 display-lg">Three areas, real impact.</h2>
           </Reveal>
-          <div className="mt-16 grid gap-5 md:grid-cols-2">
+          <div className="mt-16 grid gap-5 md:grid-cols-3">
             {csiPillars.map((p, i) => (
-              <Reveal key={p.title} delay={(i % 2) * 100}>
+              <Reveal key={p.title} delay={(i % 3) * 100}>
                 <div className="card card-hover h-full bg-cloud">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-2xl shadow-soft">
-                    {p.icon}
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                    <Icon name={p.icon} size={26} />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
                     {p.title}
@@ -137,7 +138,7 @@ export default function CSIPage() {
         <div className="container-narrow text-center">
           <Reveal>
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-teal-light">
-              Transparent & Accountable
+              Transparent &amp; Accountable
             </p>
             <h2 className="mt-4 display-lg text-white">
               Impact you can measure.
@@ -155,7 +156,8 @@ export default function CSIPage() {
                 href="/sustainability"
                 className="link-arrow text-white hover:text-teal-light"
               >
-                Our Just Energy Transition <span aria-hidden>›</span>
+                Our Just Energy Transition
+                <Icon name="chevron_right" size={18} />
               </Link>
             </div>
           </Reveal>

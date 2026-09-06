@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/Icon";
+
 export const company = {
   legalName: "Tswana Petroleum Company (Pty) Ltd",
   tradingName: "Tswana Petroleum Co.",
@@ -10,6 +12,7 @@ export const nav = [
     label: "Products & Fuels",
     href: "/products",
   },
+  { label: "Services", href: "/services" },
   { label: "Quality & Compliance", href: "/compliance" },
   { label: "Just Energy Transition", href: "/sustainability" },
   { label: "CSI", href: "/csi" },
@@ -22,8 +25,9 @@ export const contact = {
   supplyEmail: "supply@tswanapetroleum.co.za",
   salesEmail: "sales@tswanapetroleum.co.za",
   complianceEmail: "compliance@tswanapetroleum.co.za",
+  creditEmail: "credit@tswanapetroleum.co.za",
   office: "Johannesburg, Gauteng, South Africa",
-  hours: "Mon–Fri 07:00–17:00 · Emergency Supply 24/7",
+  hours: "Mon to Fri 07:00 to 17:00 · Emergency Supply 24/7",
 };
 
 export const provinces = [
@@ -41,20 +45,24 @@ export const provinces = [
 /* ------------------------------------------------------------------ */
 /* Brand architecture                                                  */
 /* ------------------------------------------------------------------ */
-export const brandArchitecture = [
+export const brandArchitecture: {
+  group: string;
+  icon: IconName;
+  items: string[];
+}[] = [
   {
     group: "Conventional Fuels",
-    icon: "⛽",
+    icon: "local_gas_station",
     items: ["Diesel 50ppm", "Diesel 500ppm", "Petrol 93 / 95", "Illuminating Paraffin"],
   },
   {
     group: "Industrial Heavy Fuels",
-    icon: "🏭",
+    icon: "factory",
     items: ["Heavy Furnace Oil", "Light Blending Fuel (LBF)", "Solvents"],
   },
   {
     group: "Next-Gen & Clean Energy",
-    icon: "💧",
+    icon: "water_drop",
     items: ["Hydrogen (Green / Blue)", "LPG Bulk", "Autogas", "Biofuels"],
   },
 ];
@@ -66,7 +74,7 @@ export type SpecRow = { label: string; a: string; b?: string; method?: string };
 
 export type Product = {
   slug: string;
-  icon: string;
+  icon: IconName;
   category: "Conventional" | "Industrial" | "Clean Energy";
   name: string;
   short: string;
@@ -86,13 +94,13 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "diesel",
-    icon: "⛽",
+    icon: "local_gas_station",
     category: "Conventional",
     name: "Automotive Diesel (50ppm & 500ppm)",
     short: "Ultra-low-sulphur and industrial-grade gasoil, formulated for HPCR engines.",
     headline: "Automotive Diesel Fuel (50ppm & 500ppm)",
     compliance: "SANS 342:2020",
-    supply: "Bulk Road Tanker Loads (10,000L – 40,000L)",
+    supply: "Bulk Road Tanker Loads (10,000L to 40,000L)",
     spec: "SANS 342",
     intro:
       "Tswana Petroleum supplies premium-grade Ultra-Low Sulphur Diesel (50ppm) and Standard Industrial Diesel (500ppm). Formulated to protect modern high-pressure common rail (HPCR) fuel injection systems, our gasoil ensures maximum combustion efficiency, reduced injector fouling, and lower particulate emissions.",
@@ -105,7 +113,7 @@ export const products: Product[] = [
     specColumns: ["Parameter", "50ppm Specification", "500ppm Specification", "Testing Method"],
     specRows: [
       { label: "Sulphur Content", a: "≤ 50.0 mg/kg", b: "≤ 500.0 mg/kg", method: "ASTM D5453" },
-      { label: "Density @ 20°C", a: "800.0 – 850.0 kg/m³", b: "800.0 – 855.0 kg/m³", method: "ASTM D4052" },
+      { label: "Density @ 20°C", a: "800.0 to 850.0 kg/m³", b: "800.0 to 855.0 kg/m³", method: "ASTM D4052" },
       { label: "Flash Point (PMCC)", a: "≥ 55.0 °C", b: "≥ 55.0 °C", method: "ASTM D93" },
       { label: "Cetane Number", a: "≥ 45.0", b: "≥ 45.0", method: "ASTM D613" },
       { label: "Water Content", a: "≤ 200 mg/kg", b: "≤ 200 mg/kg", method: "ASTM D6304" },
@@ -125,7 +133,7 @@ export const products: Product[] = [
   },
   {
     slug: "petrol",
-    icon: "⛽",
+    icon: "local_gas_station",
     category: "Conventional",
     name: "Unleaded Petrol (ULP 93 & 95)",
     short: "Clean-burning anti-knock Mogas with controlled volatility for the interior.",
@@ -145,7 +153,7 @@ export const products: Product[] = [
     specRows: [
       { label: "Research Octane Number (RON)", a: "Min 93.0", b: "Min 95.0", method: "Anti-knock rating" },
       { label: "Benzene Content", a: "Max 3.0% vol", b: "Max 3.0% vol", method: "Lower emissions" },
-      { label: "Reid Vapour Pressure (RVP)", a: "45 – 75 kPa (seasonal)", b: "45 – 75 kPa (seasonal)", method: "Reliable cold starting" },
+      { label: "Reid Vapour Pressure (RVP)", a: "45 to 75 kPa (seasonal)", b: "45 to 75 kPa (seasonal)", method: "Reliable cold starting" },
     ],
     bullets: [
       {
@@ -161,7 +169,7 @@ export const products: Product[] = [
   },
   {
     slug: "lpg",
-    icon: "🔥",
+    icon: "local_fire_department",
     category: "Clean Energy",
     name: "Bulk LPG & Commercial Propane",
     short: "Custom propane/butane blends delivering instant, controllable thermal energy.",
@@ -191,13 +199,13 @@ export const products: Product[] = [
   },
   {
     slug: "hydrogen",
-    icon: "💧",
+    icon: "water_drop",
     category: "Clean Energy",
     name: "Industrial & Fuel-Cell Hydrogen",
     short: "Grade 5.0 (99.999%) compressed hydrogen for fuel cells and heavy industry.",
     headline: "Industrial & Fuel-Cell Grade Hydrogen",
     compliance: "ISO 14687:2019 / Grade 5.0 (99.999% Pure)",
-    supply: "Tube trailers (200–500 bar) & manifolded cylinder skids",
+    supply: "Tube trailers (200 to 500 bar) & manifolded cylinder skids",
     spec: "ISO 14687",
     intro:
       "Aligned with the South African Department of Science and Innovation's Hydrogen Society Roadmap (HSRM), Tswana Petroleum Co. is positioning itself at the leading edge of commercial hydrogen supply. We engineer supply pathways for compressed gaseous hydrogen (CGH₂) across heavy industry, zero-emission transportation, and mining decarbonisation pilots.",
@@ -211,8 +219,8 @@ export const products: Product[] = [
       {
         title: "Hydrogen Supply Framework",
         items: [
-          "Grade 4.5 – 5.0 High Purity (99.99% – 99.999%) for PEM fuel cells and industrial reduction",
-          "Logistics: high-pressure tube trailers (200–500 bar) and manifolded cylinder skids (MCPs)",
+          "Grade 4.5 to 5.0 High Purity (99.99% to 99.999%) for PEM fuel cells and industrial reduction",
+          "Logistics: high-pressure tube trailers (200 to 500 bar) and manifolded cylinder skids (MCPs)",
           "Decarbonisation advisory: turnkey planning for migration from heavy distillates to hydrogen/natural-gas dual-fuel systems",
         ],
       },
@@ -228,7 +236,7 @@ export const products: Product[] = [
   },
   {
     slug: "heavy-furnace-oil",
-    icon: "🏭",
+    icon: "factory",
     category: "Industrial",
     name: "Heavy Furnace Oil (HFO 180 & 380)",
     short: "High-calorific boiler fuel with stable atomisation and low ash content.",
@@ -249,7 +257,7 @@ export const products: Product[] = [
         title: "Performance & Quality Metrics",
         items: [
           "Gross Calorific Value (GCV): ~41.5 to 43.0 MJ/kg",
-          "Ash content: < 0.10% m/m — reduced maintenance on heat exchangers and refractory linings",
+          "Ash content: < 0.10% m/m, reducing maintenance on heat exchangers and refractory linings",
           "Low Vanadium and Sodium levels to prevent high-temperature corrosion",
           "Heated tanker delivery to maintain flow properties",
         ],
@@ -258,7 +266,7 @@ export const products: Product[] = [
   },
   {
     slug: "light-blending-fuel",
-    icon: "🛢️",
+    icon: "oil_barrel",
     category: "Industrial",
     name: "Light Blending Fuel (LBF)",
     short: "Middle-distillate intermediate for blending houses and specialised burners.",
@@ -279,7 +287,7 @@ export const products: Product[] = [
         title: "Product Highlights",
         items: [
           "Consistent distillation curve and flash point",
-          "Lower viscosity than standard HFO — reduced pre-heating energy",
+          "Lower viscosity than standard HFO, reducing pre-heating energy",
           "Low sediment and water content",
           "Certificate of Analysis (CoA) with every delivery",
         ],
@@ -293,6 +301,69 @@ export const productCategories = [
   { key: "Industrial", label: "Industrial Heavy Fuels" },
   { key: "Clean Energy", label: "Next-Gen & Clean Energy" },
 ] as const;
+
+/* ------------------------------------------------------------------ */
+/* Services                                                            */
+/* ------------------------------------------------------------------ */
+export type Service = {
+  slug: string;
+  icon: IconName;
+  name: string;
+  short: string;
+  intro: string;
+  features: string[];
+};
+
+export const services: Service[] = [
+  {
+    slug: "storage-facilities",
+    icon: "warehouse",
+    name: "Storage Facilities",
+    short: "Licensed bulk storage and depot capacity at strategic inland and coastal nodes.",
+    intro:
+      "Tswana Petroleum operates and partners on licensed bulk storage across strategic coastal and inland nodes, giving clients secure holding capacity, throughput flexibility, and a buffer against supply-chain volatility.",
+    features: [
+      "Licensed bulk tank farms and depot capacity",
+      "Coastal import-terminal and inland node access",
+      "Throughput, blending and decanting capability",
+      "Tank-gauging, mass-balance and stock reconciliation",
+      "SANS 10089-compliant storage and firefighting systems",
+      "Vendor-managed inventory and consignment stock options",
+    ],
+  },
+  {
+    slug: "transportation",
+    icon: "local_shipping",
+    name: "Transportation",
+    short: "Hazchem-certified, GPS-tracked road-tanker logistics with nationwide reach.",
+    intro:
+      "Our vetted fleet and transport partners move product safely and on schedule to any site in the country, backed by real-time telematics, calibrated compartments, and full compliance with hazardous-goods regulations.",
+    features: [
+      "Hazchem-certified, telematics-tracked road tankers",
+      "Calibrated, seal-monitored compartments",
+      "Automated bottom loading (ABL) for zero product degradation",
+      "Delivered At Place (DAP) and depot-collection (FOB) options",
+      "Cross-border and abnormal-load logistics",
+      "24/7 dispatch and emergency-supply response",
+    ],
+  },
+  {
+    slug: "bonded-fuels",
+    icon: "inventory",
+    name: "Bonded Fuels",
+    short: "Duty-suspended and rebated fuel supply for qualifying and export operations.",
+    intro:
+      "Tswana Petroleum supplies bonded, duty-suspended and rebated fuels for qualifying users, cross-border trade and export operations, managing the customs, licensing and documentation so your product moves compliantly.",
+    features: [
+      "Duty-suspended and customs-bonded fuel supply",
+      "Diesel rebate support for qualifying primary-sector users",
+      "Cross-border, transit and export fuel handling",
+      "SARS customs documentation and excise compliance",
+      "Bonded-warehouse storage and throughput",
+      "Full audit trail and reconciliation reporting",
+    ],
+  },
+];
 
 /* ------------------------------------------------------------------ */
 /* Strategy, values, advantages                                        */
@@ -329,39 +400,43 @@ export const values = [
   { letter: "A", value: "African Pride", desc: "Rooted in South Africa, scaling across the continent." },
 ];
 
-export const advantages = [
+export const advantages: {
+  icon: IconName;
+  title: string;
+  detail: string;
+}[] = [
   {
-    icon: "🏗️",
+    icon: "hub",
     title: "Multi-Point Depot Off-Take",
     detail:
       "Direct allocations across primary import terminals (Durban, Richards Bay, Cape Town) and inland distribution hubs ensure zero single-point failure risks.",
   },
   {
-    icon: "🛡️",
+    icon: "verified_user",
     title: "Hazchem-Certified Transport Fleet",
     detail:
       "Fully telematics-tracked, calibrated, and seal-monitored bulk road tankers equipped with automated bottom loading (ABL) systems for zero product degradation.",
   },
   {
-    icon: "📈",
+    icon: "trending_up",
     title: "Transparent Wholesale Pricing",
     detail:
       "Pricing models tied directly to CEF and Basic Fuel Price (BFP) formulas. Fixed-margin, formula-based, or volume-tier off-take structures available.",
   },
   {
-    icon: "🧪",
+    icon: "science",
     title: "SANS-Certified Batch Assurance",
     detail:
       "Independent laboratory testing for every consignment. Certificates of Analysis (CoA) accompany every delivery run before offloading at your site.",
   },
   {
-    icon: "🔋",
+    icon: "bolt",
     title: "Future-Proof Fuel Transition",
     detail:
       "Scale from conventional diesel and HFO into LPG and hydrogen supply contracts with a single commercial partner as your sustainability goals evolve.",
   },
   {
-    icon: "🎖️",
+    icon: "workspace_premium",
     title: "B-BBEE Level 1 Contributor",
     detail:
       "135% procurement recognition value, improving your scorecard and demonstrating commitment to transformed, sustainable local enterprise.",
@@ -405,53 +480,49 @@ export const compliancePoints = [
 
 /* ------------------------------------------------------------------ */
 /* Corporate Social Investment (CSI)                                   */
+/* Focus: Education, Environment, and Access to Water where we operate */
 /* ------------------------------------------------------------------ */
 export const csiStats = [
-  { value: "1%", label: "of NPAT invested in community programmes" },
-  { value: "150+", label: "STEM bursaries & learnerships funded" },
+  { value: "3", label: "focus areas guiding every programme" },
+  { value: "150+", label: "bursaries & learnerships funded" },
   { value: "9", label: "provinces reached through outreach" },
   { value: "60%", label: "CSI spend directed to host communities" },
 ];
 
-export const csiPillars = [
+export const csiPillars: {
+  icon: IconName;
+  title: string;
+  desc: string;
+  points: string[];
+}[] = [
   {
-    icon: "🎓",
-    title: "Education & Skills",
-    desc: "STEM bursaries, artisan learnerships, and driver-training academies that build the technical talent pipeline for South Africa's energy sector.",
+    icon: "school",
+    title: "Education",
+    desc: "Building the technical talent pipeline for South Africa's energy sector through bursaries, learnerships and school support in the communities where we operate.",
     points: [
       "University bursaries in engineering, chemistry and logistics",
       "Hazchem and Code-14 driver-training academy",
-      "School science-lab sponsorships in host communities",
+      "School science-lab sponsorships and STEM outreach",
     ],
   },
   {
-    icon: "💼",
-    title: "Enterprise & Supplier Development",
-    desc: "Growing black-owned SMMEs across our supply chain through funding, mentorship, and preferential procurement.",
+    icon: "eco",
+    title: "Environment",
+    desc: "Protecting the ecosystems around our operations while creating the green skills a lower-carbon economy will depend on.",
     points: [
-      "Development funding for emerging transporters",
-      "Mentorship for youth- and women-owned enterprises",
-      "Preferential procurement from local SMMEs",
+      "Land rehabilitation and indigenous tree-planting drives",
+      "Green-skills training for the hydrogen and renewables economy",
+      "Clean-cooking LPG programmes that cut indoor-air pollution",
     ],
   },
   {
-    icon: "🏘️",
-    title: "Community & Infrastructure",
-    desc: "Practical investment in the communities where we operate — from clean water to safety and energy access.",
+    icon: "water",
+    title: "Access to Water",
+    desc: "Investing in reliable, clean water for the host communities where we operate, from boreholes to sanitation infrastructure.",
     points: [
-      "LPG access programmes reducing indoor-air pollution",
-      "Borehole, sanitation and clinic infrastructure support",
-      "Road-safety and fuel-handling awareness campaigns",
-    ],
-  },
-  {
-    icon: "🌱",
-    title: "Environment & Just Transition",
-    desc: "Community-level programmes that align economic upliftment with a lower-carbon future.",
-    points: [
-      "Green-skills training for the hydrogen economy",
-      "Tree-planting and land-rehabilitation drives",
-      "Renewable-energy pilots at community facilities",
+      "Borehole drilling and solar-pumped water points",
+      "Rainwater harvesting and storage at schools and clinics",
+      "Sanitation and water-safety infrastructure support",
     ],
   },
 ];
@@ -463,18 +534,18 @@ export const csiPrograms = [
     desc: "Full-cost bursaries for underrepresented youth studying engineering, chemistry and supply-chain management at South African universities.",
   },
   {
-    tag: "Skills",
+    tag: "Environment",
+    title: "Green Corridors Initiative",
+    desc: "Land-rehabilitation, tree-planting and green-skills training that restore ecosystems along our supply corridors.",
+  },
+  {
+    tag: "Access to Water",
+    title: "Water for Communities Programme",
+    desc: "Borehole, solar-pump and rainwater-harvesting projects delivering clean, reliable water to schools and clinics in host communities.",
+  },
+  {
+    tag: "Education",
     title: "Driver & Artisan Academy",
     desc: "Accredited Hazchem and Code-14 training that places graduates directly into our vetted transport network and partner fleets.",
-  },
-  {
-    tag: "Community",
-    title: "Clean-Energy Access Initiative",
-    desc: "Subsidised LPG cylinders and safe-handling training for households transitioning away from paraffin and coal.",
-  },
-  {
-    tag: "Enterprise",
-    title: "Emerging Transporter Programme",
-    desc: "Funding, mentorship and guaranteed offtake for black-owned road-tanker SMMEs entering the fuel-logistics market.",
   },
 ];

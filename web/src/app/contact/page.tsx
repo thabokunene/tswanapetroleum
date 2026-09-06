@@ -1,36 +1,42 @@
 import type { Metadata } from "next";
 import PageShell, { PageHero } from "@/components/PageShell";
 import QuoteForm from "@/components/QuoteForm";
+import Icon, { type IconName } from "@/components/Icon";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote",
   description:
-    "Let's fuel your business. Whether you need 10,000 litres or 10 million, Tswana Petroleum Co. delivers — on time, on spec, and on budget.",
+    "Let's fuel your business. Whether you need 10,000 litres or 10 million, Tswana Petroleum Co. delivers on time, on spec, and on budget.",
 };
 
-const details = [
-  { icon: "📞", label: "Trading Desk", value: contact.phone },
+const details: {
+  icon: IconName;
+  label: string;
+  value: string;
+  href?: string;
+}[] = [
+  { icon: "call", label: "Trading Desk", value: contact.phone },
   {
-    icon: "📧",
+    icon: "mail",
     label: "Direct Supply",
     value: contact.supplyEmail,
     href: `mailto:${contact.supplyEmail}`,
   },
   {
-    icon: "📧",
+    icon: "mail",
     label: "Sales",
     value: contact.salesEmail,
     href: `mailto:${contact.salesEmail}`,
   },
   {
-    icon: "🛡️",
+    icon: "shield",
     label: "Compliance",
     value: contact.complianceEmail,
     href: `mailto:${contact.complianceEmail}`,
   },
-  { icon: "📍", label: "Head Office", value: contact.office },
-  { icon: "🕐", label: "Trading Hours", value: contact.hours },
+  { icon: "place", label: "Head Office", value: contact.office },
+  { icon: "schedule", label: "Trading Hours", value: contact.hours },
 ];
 
 export default function ContactPage() {
@@ -39,7 +45,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact Us"
         title="Let's fuel your business."
-        subtitle="Whether you need 10,000 litres or 10 million — on time, on spec, and on budget."
+        subtitle="Whether you need 10,000 litres or 10 million, on time, on spec, and on budget."
       />
 
       <section className="section bg-white">
@@ -55,8 +61,8 @@ export default function ContactPage() {
             <ul className="mt-8 space-y-5">
               {details.map((d) => (
                 <li key={d.label} className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cloud text-xl">
-                    {d.icon}
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cloud text-teal">
+                    <Icon name={d.icon} size={22} />
                   </span>
                   <div>
                     <div className="text-xs uppercase tracking-wide text-smoke">

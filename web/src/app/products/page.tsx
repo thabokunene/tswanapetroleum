@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageShell, { PageHero } from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
+import Icon from "@/components/Icon";
 import { products, productCategories } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Products & Fuels"
         title="The energy of today. The fuels of tomorrow."
-        subtitle="A full portfolio supplied at wholesale scale — from conventional hydrocarbons to next-generation clean energy."
+        subtitle="A full portfolio supplied at wholesale scale, from conventional hydrocarbons to next-generation clean energy."
       />
 
       {productCategories.map((cat, ci) => {
@@ -39,8 +40,8 @@ export default function ProductsPage() {
                       className="card card-hover group flex h-full flex-col bg-cloud"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-xl shadow-soft">
-                          {p.icon}
+                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                          <Icon name={p.icon} size={24} />
                         </span>
                         <span className="text-xs font-medium text-smoke">
                           {p.spec}
@@ -56,7 +57,8 @@ export default function ProductsPage() {
                         {p.compliance}
                       </span>
                       <span className="link-arrow mt-4">
-                        View specifications <span aria-hidden>›</span>
+                        View specifications
+                        <Icon name="chevron_right" size={18} />
                       </span>
                     </Link>
                   </Reveal>

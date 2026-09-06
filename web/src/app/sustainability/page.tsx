@@ -3,6 +3,7 @@ import Image from "next/image";
 import PageShell, { PageHero } from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
+import Icon, { type IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Just Energy Transition",
@@ -10,9 +11,9 @@ export const metadata: Metadata = {
     "Our Just Energy Transition Strategy: balancing reliable fossil-fuel supply with green hydrogen and LPG infrastructure, aligned to South Africa's Hydrogen Society Roadmap.",
 };
 
-const pillars = [
+const pillars: { icon: IconName; title: string; points: string[] }[] = [
   {
-    icon: "🌍",
+    icon: "eco",
     title: "Environmental",
     points: [
       "Reducing Scope 1 & 2 emissions by 30% by 2030",
@@ -21,7 +22,7 @@ const pillars = [
     ],
   },
   {
-    icon: "👥",
+    icon: "school",
     title: "Social",
     points: [
       "Skills development programmes in host communities",
@@ -30,7 +31,7 @@ const pillars = [
     ],
   },
   {
-    icon: "🏛️",
+    icon: "verified_user",
     title: "Governance",
     points: [
       "Transparent supply chain reporting",
@@ -87,7 +88,7 @@ export default function SustainabilityPage() {
                 Hydrogen Society Roadmap (HSRM)
               </strong>
               , we are positioning at the leading edge of commercial clean energy
-              supply — while maintaining the ultra-reliable conventional fuel
+              supply, while maintaining the ultra-reliable conventional fuel
               chains our clients depend on today.
             </p>
             <blockquote className="mt-8 border-l-2 border-teal pl-6 text-2xl font-medium leading-snug tracking-tight text-carbon">
@@ -134,7 +135,9 @@ export default function SustainabilityPage() {
             {pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
                 <div className="card card-hover h-full bg-cloud">
-                  <span className="text-4xl">{p.icon}</span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                    <Icon name={p.icon} size={26} />
+                  </span>
                   <h3 className="mt-5 text-xl font-semibold tracking-tight text-carbon">
                     {p.title}
                   </h3>

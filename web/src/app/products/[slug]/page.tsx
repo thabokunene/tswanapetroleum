@@ -5,6 +5,7 @@ import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import CTASection from "@/components/CTASection";
 import SpecTable from "@/components/SpecTable";
+import Icon from "@/components/Icon";
 import { products } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -36,12 +37,12 @@ export default function ProductDetail({
 
   return (
     <PageShell>
-      {/* Hero — centered Apple product style */}
+      {/* Hero: centered product style */}
       <section className="bg-mist pt-24 pb-16 text-center md:pt-32 md:pb-20">
         <div className="container-narrow">
           <Reveal>
-            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-white text-4xl shadow-soft">
-              {product.icon}
+            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-white text-teal shadow-soft">
+              <Icon name={product.icon} size={34} />
             </span>
             <p className="mt-6 eyebrow">{product.spec}</p>
             <h1 className="mt-3 display-xl text-carbon">{product.headline}</h1>
@@ -117,8 +118,8 @@ export default function ProductDetail({
             <ul className="mt-6 space-y-4">
               {product.applications.map((a) => (
                 <li key={a} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-xs text-white">
-                    ✓
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                    <Icon name="check" size={15} strokeWidth={2.25} />
                   </span>
                   <span className="text-[1.05rem] text-carbon">{a}</span>
                 </li>
@@ -157,8 +158,8 @@ export default function ProductDetail({
                 href={`/products/${p.slug}`}
                 className="card card-hover group flex h-full flex-col bg-cloud"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-xl shadow-soft">
-                  {p.icon}
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                  <Icon name={p.icon} size={24} />
                 </span>
                 <h3 className="mt-5 text-lg font-semibold tracking-tight text-carbon">
                   {p.name}
@@ -167,7 +168,8 @@ export default function ProductDetail({
                   {p.short}
                 </p>
                 <span className="link-arrow mt-5">
-                  View specifications <span aria-hidden>›</span>
+                  View specifications
+                  <Icon name="chevron_right" size={18} />
                 </span>
               </Link>
             ))}

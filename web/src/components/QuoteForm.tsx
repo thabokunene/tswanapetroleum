@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Icon from "@/components/Icon";
 import { products } from "@/lib/site";
 
 function QuoteFormInner() {
@@ -21,8 +22,8 @@ function QuoteFormInner() {
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center rounded-4xl bg-cloud p-12 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-teal text-3xl text-white">
-          ✓
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-teal text-white">
+          <Icon name="check" size={32} strokeWidth={2.25} />
         </span>
         <h3 className="mt-6 text-2xl font-semibold tracking-tight text-carbon">
           Request received.
