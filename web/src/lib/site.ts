@@ -90,7 +90,7 @@ export const contact = {
   salesEmail: "sales@tswanapetroleum.co.za",
   complianceEmail: "compliance@tswanapetroleum.co.za",
   creditEmail: "credit@tswanapetroleum.co.za",
-  office: "Johannesburg, Gauteng, South Africa",
+  office: "35 Fricker Road, Johannesburg, Gauteng, South Africa",
   hours: "Mon to Fri 07:00 to 17:00 · Emergency Supply 24/7",
 };
 
