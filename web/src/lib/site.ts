@@ -17,12 +17,17 @@ export const nav = [
   { label: "Just Energy Transition", href: "/sustainability" },
   { label: "CSI", href: "/csi" },
   { label: "About Us", href: "/about" },
+  {
+    label: "Supplier Connect",
+    href: "https://mubadalaenergy.com/supplier-connect/",
+    external: true,
+  },
   { label: "Contact", href: "/contact" },
 ];
 
 export const contact = {
-  phone: "+27 (0) 11 000 0000",
-  supplyEmail: "supply@tswanapetroleum.co.za",
+  phone: "+27 (0) 71 111 1630",
+  supplyEmail: "fuels@tswanapetroleum.co.za",
   salesEmail: "sales@tswanapetroleum.co.za",
   complianceEmail: "compliance@tswanapetroleum.co.za",
   creditEmail: "credit@tswanapetroleum.co.za",

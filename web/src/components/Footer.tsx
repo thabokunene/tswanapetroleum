@@ -25,10 +25,18 @@ export default function Footer() {
                 { label: "Just Energy Transition", href: "/sustainability" },
                 { label: "Corporate Social Investment", href: "/csi" },
                 { label: "Credit Application", href: "/credit-application" },
+                {
+                  label: "Supplier Connect",
+                  href: "https://mubadalaenergy.com/supplier-connect/",
+                  external: true,
+                },
               ].map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    {...("external" in l && l.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="transition-colors hover:text-carbon"
                   >
                     {l.label}

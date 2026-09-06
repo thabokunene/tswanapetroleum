@@ -27,6 +27,9 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
+              {...(item.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className="text-[0.8rem] font-normal text-carbon/80 transition-colors duration-200 hover:text-carbon"
             >
               {item.label}
@@ -63,6 +66,9 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl px-4 py-3.5 text-lg font-medium text-carbon transition-colors hover:bg-cloud"
               >
