@@ -32,7 +32,7 @@ export default function CreditApplicationPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow="Credit Application"
+        eyebrow="Apply for Credit Facility"
         title="Open a trade account."
         subtitle="Apply for a credit facility to unlock contract pricing, scheduled deliveries and consolidated monthly billing."
       />

@@ -25,7 +25,11 @@ export default function Footer() {
                 { label: "Quality & Compliance", href: "/compliance" },
                 { label: "Just Energy Transition", href: "/sustainability" },
                 { label: "Corporate Social Investment", href: "/csi" },
-                { label: "Credit Application", href: "/credit-application" },
+                { label: "Apply for Credit Facility", href: "/credit-application" },
+                {
+                  label: "Supplier Code of Conduct",
+                  href: "/supplier-code-of-conduct",
+                },
                 {
                   label: "Supplier Connect",
                   href: "https://mubadalaenergy.com/supplier-connect/",
