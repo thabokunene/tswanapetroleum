@@ -41,7 +41,7 @@ export default function ProductDetail({
       <section className="bg-mist pt-24 pb-16 text-center md:pt-32 md:pb-20">
         <div className="container-narrow">
           <Reveal>
-            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-white text-teal shadow-soft">
+            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-[2px] bg-white text-teal">
               <Icon name={product.icon} size={34} />
             </span>
             <p className="mt-6 eyebrow">{product.spec}</p>
@@ -93,7 +93,7 @@ export default function ProductDetail({
             <Reveal>
               <p className="eyebrow">Technical Specification</p>
               <h2 className="mt-4 display-lg">Verified performance parameters.</h2>
-              <div className="mt-10 overflow-x-auto rounded-3xl bg-cloud p-2 sm:p-6">
+              <div className="mt-10 overflow-x-auto rounded-[2px] bg-cloud p-2 sm:p-6">
                 <SpecTable
                   columns={product.specColumns}
                   rows={product.specRows}
@@ -118,7 +118,7 @@ export default function ProductDetail({
             <ul className="mt-6 space-y-4">
               {product.applications.map((a) => (
                 <li key={a} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[2px] bg-teal text-white">
                     <Icon name="check" size={15} strokeWidth={2.25} />
                   </span>
                   <span className="text-[1.05rem] text-carbon">{a}</span>
@@ -129,7 +129,7 @@ export default function ProductDetail({
 
           <Reveal delay={120} className="space-y-6">
             {product.bullets?.map((b) => (
-              <div key={b.title} className="rounded-3xl bg-white p-8 shadow-soft">
+              <div key={b.title} className="rounded-[2px] bg-white p-8">
                 <h2 className="text-xl font-semibold tracking-tight text-carbon">
                   {b.title}
                 </h2>
@@ -158,7 +158,7 @@ export default function ProductDetail({
                 href={`/products/${p.slug}`}
                 className="card card-hover group flex h-full flex-col bg-cloud"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                <span className="flex h-11 w-11 items-center justify-center rounded-[2px] bg-white text-teal">
                   <Icon name={p.icon} size={24} />
                 </span>
                 <h3 className="mt-5 text-lg font-semibold tracking-tight text-carbon">

@@ -24,7 +24,7 @@ export default function ProductsPage() {
 
       <section className="bg-white pt-8">
         <div className="container-x">
-          <div className="relative aspect-[21/9] overflow-hidden rounded-4xl shadow-card">
+          <div className="relative aspect-[21/9] overflow-hidden rounded-[2px]">
             <Image
               src="/images/refinery-aerial.png"
               alt="Modern oil refinery and petrochemical complex illuminated at twilight"
@@ -63,7 +63,7 @@ export default function ProductsPage() {
                       className="card card-hover group flex h-full flex-col bg-cloud"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-[2px] bg-white text-teal">
                           <Icon name={p.icon} size={24} />
                         </span>
                         <span className="text-xs font-medium text-smoke">

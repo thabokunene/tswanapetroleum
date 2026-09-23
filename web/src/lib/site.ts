@@ -65,22 +65,15 @@ export const sourcingOrigins: { region: string; note: string }[] = [
   { region: "India & Singapore", note: "Refined product arbitrage" },
 ];
 
+// Primary navigation. Kept deliberately short so the header breathes; CSI and
+// Supplier Connect live in the footer and on the About page.
 export const nav = [
   { label: "Trading & Importing", href: "/trading" },
-  {
-    label: "Products & Fuels",
-    href: "/products",
-  },
+  { label: "Products & Fuels", href: "/products" },
   { label: "Services", href: "/services" },
   { label: "Quality & Compliance", href: "/compliance" },
   { label: "Just Energy Transition", href: "/sustainability" },
-  { label: "CSI", href: "/csi" },
   { label: "About Us", href: "/about" },
-  {
-    label: "Supplier Connect",
-    href: "https://mubadalaenergy.com/supplier-connect/",
-    external: true,
-  },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -674,3 +667,363 @@ export const csiPrograms = [
     desc: "Accredited Hazchem and Code-14 training that places graduates directly into our vetted transport network and partner fleets.",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Operations network — the national supply geography                  */
+/* Drives the homepage network map, capability matrix and corridor      */
+/* dossiers. Node ids line up with `nodePositions` in geography.ts.     */
+/* ------------------------------------------------------------------ */
+
+export type NetworkNode = {
+  id: string;
+  name: string;
+  kind: "Coastal import terminal" | "Inland distribution hub" | "Industrial node";
+  note: string;
+};
+
+export const networkNodes: NetworkNode[] = [
+  { id: "durban", name: "Durban", kind: "Coastal import terminal", note: "Primary clean-product import and blending node" },
+  { id: "richardsBay", name: "Richards Bay", kind: "Coastal import terminal", note: "Heavy fuel, solvent and bulk cargo discharge" },
+  { id: "capeTown", name: "Cape Town", kind: "Coastal import terminal", note: "Western Cape storage and marine bunkering" },
+  { id: "saldanha", name: "Saldanha Bay", kind: "Coastal import terminal", note: "Deep-water crude and heavy-fuel handling" },
+  { id: "mosselBay", name: "Mossel Bay", kind: "Coastal import terminal", note: "Southern Cape product storage" },
+  { id: "coega", name: "Coega / Ngqura", kind: "Coastal import terminal", note: "Eastern Cape import corridor and IDZ supply" },
+  { id: "eastLondon", name: "East London", kind: "Coastal import terminal", note: "Border-region coastal supply" },
+  { id: "johannesburg", name: "Johannesburg (Alrode)", kind: "Inland distribution hub", note: "Gauteng hub for national distribution and off-take" },
+  { id: "sasolburg", name: "Sasolburg", kind: "Inland distribution hub", note: "Inland refining, blending and throughput capacity" },
+  { id: "bloemfontein", name: "Bloemfontein", kind: "Inland distribution hub", note: "Free State agricultural and rail-linked corridor" },
+  { id: "kimberley", name: "Kimberley", kind: "Inland distribution hub", note: "Northern Cape mining supply base" },
+  { id: "upington", name: "Upington", kind: "Inland distribution hub", note: "Kalahari corridor and north-west border gateway" },
+  { id: "polokwane", name: "Polokwane", kind: "Inland distribution hub", note: "Limpopo distribution and Zimbabwe border approach" },
+  { id: "rustenburg", name: "Rustenburg", kind: "Industrial node", note: "Platinum-belt mining and smelting demand" },
+  { id: "mbombela", name: "Mbombela", kind: "Industrial node", note: "Lowveld agriculture, forestry and milling demand" },
+];
+
+export type Corridor = {
+  id: string;
+  /** Operator-facing route name, e.g. "N3 · Durban–Johannesburg". */
+  roads: string;
+  label: string;
+  distance: string;
+  transit: string;
+  lanes: string;
+  cargo: string;
+  products: string[];
+  terminals: string[];
+  /** Node ids from `networkNodes`; highlighted on the map for this corridor. */
+  nodes: string[];
+  /** Corridor ids from `geography.ts` drawn as the active network on the map. */
+  routes: string[];
+};
+
+export const corridors: Corridor[] = [
+  {
+    id: "kzn-inland",
+    roads: "N3 · Durban–Johannesburg",
+    label: "KwaZulu-Natal to Gauteng",
+    distance: "572 km",
+    transit: "8–12 hours",
+    lanes: "Import terminal to inland depots and bulk customers",
+    cargo: "Clean products",
+    products: ["Diesel 50/500ppm", "ULP 93/95", "Jet fuel", "HFO 180"],
+    terminals: ["Durban", "Johannesburg"],
+    nodes: ["durban", "johannesburg"],
+    routes: ["n3"],
+  },
+  {
+    id: "highveld",
+    roads: "N4 · Mbombela–Gauteng",
+    label: "Highveld Industrial",
+    distance: "358 km",
+    transit: "6–8 hours",
+    lanes: "Mining, smelting and agro-processing supply",
+    cargo: "Industrial & heavy fuels",
+    products: ["HFO 180/380", "Diesel 500ppm", "LBF", "Solvents"],
+    terminals: ["Mbombela", "Johannesburg"],
+    nodes: ["mbombela", "johannesburg"],
+    routes: ["n4"],
+  },
+  {
+    id: "northern-belt",
+    roads: "N1 / N4 · Platinum Belt",
+    label: "Limpopo & Platinum Belt",
+    distance: "330 km",
+    transit: "6–8 hours",
+    lanes: "Mining, smelting and border-approach supply",
+    cargo: "Bulk diesel & heavy fuel",
+    products: ["Diesel 50/500ppm", "HFO 380", "LPG bulk", "Autogas"],
+    terminals: ["Johannesburg", "Polokwane", "Rustenburg"],
+    nodes: ["johannesburg", "polokwane", "rustenburg"],
+    routes: ["n1-north", "n4-west"],
+  },
+  {
+    id: "vaal",
+    roads: "N1 · Vaal Triangle & Industrial Heartland",
+    label: "Vaal & Highveld Industrial",
+    distance: "270 km",
+    transit: "5–7 hours",
+    lanes: "Blending houses, boilers and process-fuel supply",
+    cargo: "Heavy & blend stocks",
+    products: ["HFO 380", "LBF", "Diesel 500ppm", "Illuminating paraffin"],
+    terminals: ["Johannesburg", "Sasolburg"],
+    nodes: ["johannesburg", "sasolburg"],
+    routes: ["n1-south"],
+  },
+  {
+    id: "kzn-bulk",
+    roads: "N2 · Richards Bay–Durban",
+    label: "Richards Bay Bulk Coastal",
+    distance: "178 km",
+    transit: "4–6 hours",
+    lanes: "Bulk cargo discharge and coastal storage",
+    cargo: "Bulk & marine",
+    products: ["LBF", "Solvents", "HFO 180/380", "Marine bunkers"],
+    terminals: ["Richards Bay", "Durban"],
+    nodes: ["richardsBay", "durban"],
+    routes: ["n2-north"],
+  },
+  {
+    id: "cape-continental",
+    roads: "N2 / N1 · Southern & Cape Corridors",
+    label: "Western & Southern Cape",
+    distance: "1,180 km",
+    transit: "16–20 hours",
+    lanes: "Coastal terminals to Garden Route and Eastern Cape",
+    cargo: "Retail, agriculture & marine",
+    products: ["Diesel 50ppm", "ULP 95", "LPG bulk", "Marine fuel"],
+    terminals: ["Cape Town", "Saldanha Bay", "Mossel Bay", "Coega"],
+    nodes: ["capeTown", "saldanha", "mosselBay", "coega"],
+    routes: ["n7", "n2-coast"],
+  },
+  {
+    id: "coega-eastern",
+    roads: "N2 / N6 · Eastern Cape",
+    label: "Eastern Cape Import Corridor",
+    distance: "705 km",
+    transit: "12–16 hours",
+    lanes: "Import terminal to Free State and KZN",
+    cargo: "Clean products",
+    products: ["Diesel 50/500ppm", "ULP 93/95", "LPG bulk"],
+    terminals: ["Coega", "East London", "Bloemfontein"],
+    nodes: ["coega", "eastLondon", "bloemfontein"],
+    routes: ["n2-coast"],
+  },
+  {
+    id: "kalahari",
+    roads: "N12 / N14 · Kalahari & Border",
+    label: "Northern Cape & Border Gateway",
+    distance: "480–1,140 km",
+    transit: "12–18 hours",
+    lanes: "Mining supply and cross-border export movements",
+    cargo: "Mining & export",
+    products: ["Diesel 500ppm", "HFO 180", "Illuminating paraffin", "LPG bulk"],
+    terminals: ["Johannesburg", "Kimberley", "Upington"],
+    nodes: ["johannesburg", "kimberley", "upington"],
+    routes: ["n12"],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Capability matrix — what we move, on what terms                      */
+/* ------------------------------------------------------------------ */
+export type CapabilityRow = {
+  service: string;
+  sub: string;
+  icon: IconName;
+  payload: string;
+  compliance: string[];
+  coverage: string;
+  lead: string;
+  nodes: string;
+};
+
+export const capabilityMatrix: CapabilityRow[] = [
+  {
+    service: "Bulk Fuel Distribution",
+    sub: "Diesel 50/500ppm · ULP 93/95 · Illuminating paraffin",
+    icon: "local_gas_station",
+    payload: "10,000–40,000 L per load",
+    compliance: ["SANS 342:2020", "SANS 228:2020", "Independent CoA per batch"],
+    coverage: "All nine provinces",
+    lead: "From 24 hours",
+    nodes: "9",
+  },
+  {
+    service: "Industrial Heavy Fuels",
+    sub: "Heavy furnace oil 180/380 cSt · Light blending fuel",
+    icon: "factory",
+    payload: "Up to 34 t per load",
+    compliance: ["SANS 10178", "ISO 8217", "Steam-heated tanker delivery"],
+    coverage: "Mining, cement, smelters",
+    lead: "48–72 hours",
+    nodes: "6",
+  },
+  {
+    service: "Bulk LPG & Autogas",
+    sub: "Propane/butane blends · Commercial & industrial",
+    icon: "local_fire_department",
+    payload: "5–25 t per bulk tanker",
+    compliance: ["SANS 1528", "SANS 10087", "Pressure Equipment Regs"],
+    coverage: "Agro, food, metallurgy",
+    lead: "48–96 hours",
+    nodes: "5",
+  },
+  {
+    service: "Hazardous Goods",
+    sub: "Class 3 flammable liquids · Hazchem operations",
+    icon: "shield",
+    payload: "Up to 34 t per load",
+    compliance: ["Hazchem-certified fleet", "SANS 10234 GHS", "Zero-spill protocol"],
+    coverage: "Chemical & mining clients",
+    lead: "From 24 hours",
+    nodes: "7",
+  },
+  {
+    service: "Bonded & Duty-Suspended",
+    sub: "Duty-suspended, rebated and export fuel supply",
+    icon: "inventory",
+    payload: "Up to 34 t per load",
+    compliance: ["SARS customs & excise", "Bonded warehouse storage", "Full audit trail"],
+    coverage: "Export & cross-border",
+    lead: "72 hours +",
+    nodes: "5",
+  },
+  {
+    service: "Next-Gen & Clean Energy",
+    sub: "LPG infrastructure · Hydrogen supply pathways",
+    icon: "water_drop",
+    payload: "Tube trailers 200–500 bar",
+    compliance: ["ISO 14687:2019", "Grade 4.5–5.0 purity", "HSRM-aligned"],
+    coverage: "Pilot & development phase",
+    lead: "By agreement",
+    nodes: "3",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Fleet configuration, compliance framework and proof                 */
+/* ------------------------------------------------------------------ */
+export const fleetSpec: { label: string; value: string }[] = [
+  {
+    label: "Bulk tankers",
+    value:
+      "Rigid and articulated road tankers from 10,000 L to 40,000 L, calibrated compartments with seal monitoring on every load",
+  },
+  {
+    label: "Loading",
+    value:
+      "Automated bottom loading (ABL) with vapour recovery and dry-break couplings for zero product degradation and zero-spill offloading",
+  },
+  {
+    label: "Heavy fuel",
+    value:
+      "Insulated, steam-heated tankers that hold HFO 180/380 cSt flow properties from terminal to burner tip",
+  },
+  {
+    label: "LPG & gas",
+    value:
+      "5 t to 25 t bulk gas tankers and manifolded cylinder skids, handled under PER-compliant inspection regimes",
+  },
+  {
+    label: "Telematics",
+    value:
+      "Every vehicle tracked live, with dispatch, ETA and compartment data visible to the operations desk and the client",
+  },
+  {
+    label: "People",
+    value:
+      "Hazchem-trained drivers, code-14 and PrDP certified, backed by a 24/7 emergency-supply desk",
+  },
+];
+
+export const complianceFramework: {
+  title: string;
+  desc: string;
+  reference: string;
+}[] = [
+  {
+    title: "Wholesale Licence",
+    desc: "Licensed wholesale distributor of petroleum products, operating under the Petroleum Products Act and its regulations.",
+    reference: "Act 120 of 1977",
+  },
+  {
+    title: "Product Specifications",
+    desc: "Diesel, petrol and LPG supplied to current South African national standards, with independent Certificates of Analysis on every batch.",
+    reference: "SANS 342 · 228 · 1528",
+  },
+  {
+    title: "Hazardous Substances",
+    desc: "Class 3 flammable liquid handling, storage and transport aligned to the Hazardous Substances Act and GHS classification.",
+    reference: "Act 15 of 1973 · SANS 10234",
+  },
+  {
+    title: "Pressure Equipment",
+    desc: "Bulk LPG vessels and installations served under Pressure Equipment Regulations compliance and periodic inspection.",
+    reference: "PER · SANS 10087",
+  },
+  {
+    title: "Customs & Excise",
+    desc: "Bonded, duty-suspended and rebated fuel movements managed with full documentation and audit trails.",
+    reference: "Customs & Excise Act",
+  },
+];
+
+export const proofStats: { value: string; label: string; accent?: boolean }[] = [
+  { value: "9", label: "Provinces covered by road" },
+  { value: "6", label: "International sourcing basins", accent: true },
+  { value: "100%", label: "Batches with independent CoA" },
+  { value: "Level 1", label: "B-BBEE procurement contributor" },
+];
+
+/** Terminal and hub roll-call used by the running network ticker. */
+export const networkTicker: string[] = [
+  "Saldanha Bay",
+  "Cape Town",
+  "Mossel Bay",
+  "Coega",
+  "East London",
+  "Durban",
+  "Richards Bay",
+  "Sasolburg",
+  "Bloemfontein",
+  "Kimberley",
+  "Upington",
+  "Rustenburg",
+  "Polokwane",
+  "Mbombela",
+  "Johannesburg",
+];
+
+/** Illustrative deployment used as the homepage "capability in practice" file. */
+export const deploymentFile = {
+  eyebrow: "Capability in practice",
+  title: "Multi-point diesel continuity for a 180-unit mining fleet",
+  subtitle:
+    "Three terminals, one control desk, zero stock-outs across a six-month winter campaign.",
+  disclaimer:
+    "Illustrative deployment. Figures describe our standard operating model and service commitments, not a named client file.",
+  stages: [
+    {
+      title: "The brief",
+      body: "A platinum-belt mining house running 180 units of mobile equipment needed assured diesel supply through winter, when a single terminal outage or a 12-hour road delay would stall the pit. Three separate contracts were consolidated into one wholesale agreement with fixed CEF-linked formula pricing.",
+    },
+    {
+      title: "The exposure",
+      body: "The site sat 330 km from its nearest inland hub with a 21-day buffer in on-site storage. Winter demand peaked at 40,000 L per day, and the N1/N4 approach carried a high probability of weather and abnormal-load delays across the 24-week campaign.",
+    },
+    {
+      title: "The deployment",
+      body: "We split the volume across three terminals so no single outage could interrupt supply, pre-positioned three tankers within a four-hour radius, and put the mine's fuel controller on the same live dispatch board as our operations desk. Deliveries were scheduled in 40,000 L loads against a rolling 72-hour forecast.",
+    },
+    {
+      title: "The assurance",
+      body: "Every load arrived with its Certificate of Analysis, calibrated compartment seals and a telematics trail, reconciled weekly against the mine's own mass balance. The campaign closed on the contracted pricing formula with no stock-out days recorded.",
+    },
+  ],
+  stats: [
+    { value: "3", label: "Terminals supplying" },
+    { value: "24/7", label: "Dispatch desk cover" },
+    { value: "72 hrs", label: "Rolling demand forecast" },
+    { value: "0", label: "Stock-out days", accent: true },
+  ],
+};

@@ -64,7 +64,7 @@ export default function CookieConsent() {
       aria-label="Cookie consent"
       className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6 sm:pb-6"
     >
-      <div className="mx-auto max-w-3xl overflow-hidden rounded-3xl border border-black/[0.06] bg-white/85 shadow-2xl shadow-black/10 backdrop-blur-xl backdrop-saturate-150">
+      <div className="mx-auto max-w-3xl overflow-hidden rounded-[2px] border border-black/[0.06] bg-white/85 shadow-2xl shadow-black/10 backdrop-blur-xl backdrop-saturate-150">
         <div className="p-6 sm:p-8">
           <div className="flex items-start gap-3">
             <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-teal">
@@ -122,14 +122,14 @@ export default function CookieConsent() {
             ) : (
               <button
                 onClick={() => setShowSettings(true)}
-                className="rounded-full border border-carbon/15 px-6 py-3 text-base font-medium text-carbon transition-all duration-300 ease-apple hover:bg-cloud"
+                className="rounded-[2px] border border-carbon/15 px-6 py-3 text-base font-medium text-carbon transition-all duration-300 ease-apple hover:bg-cloud"
               >
                 Cookie Settings
               </button>
             )}
             <button
               onClick={rejectAll}
-              className="rounded-full border border-carbon/15 px-6 py-3 text-base font-medium text-carbon transition-all duration-300 ease-apple hover:bg-cloud"
+              className="rounded-[2px] border border-carbon/15 px-6 py-3 text-base font-medium text-carbon transition-all duration-300 ease-apple hover:bg-cloud"
             >
               Reject All
             </button>

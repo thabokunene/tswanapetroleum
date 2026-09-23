@@ -75,7 +75,7 @@ export default function AboutPage() {
       <section className="bg-white pb-4">
         <div className="container-x">
           <Reveal>
-            <div className="relative aspect-[21/9] overflow-hidden rounded-4xl shadow-card">
+            <div className="relative aspect-[21/9] overflow-hidden rounded-[2px]">
               <Image
                 src="/images/global-trade.png"
                 alt="Global energy and shipping trade routes centred on Africa and the Middle East"
@@ -180,7 +180,7 @@ export default function AboutPage() {
             {values.map((v, i) => (
               <Reveal key={v.value} delay={(i % 3) * 90}>
                 <div className="card card-hover flex h-full gap-5 bg-cloud">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-xl font-semibold text-white">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[2px] bg-brand-gradient text-xl font-semibold text-white">
                     {v.letter}
                   </span>
                   <div>

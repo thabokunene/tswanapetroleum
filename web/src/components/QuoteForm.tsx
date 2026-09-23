@@ -31,8 +31,8 @@ function QuoteFormInner() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-4xl bg-cloud p-12 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-teal text-white">
+      <div className="flex flex-col items-center justify-center rounded-[2px] bg-cloud p-12 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-[2px] bg-teal text-white">
           <Icon name="check" size={32} strokeWidth={2.25} />
         </span>
         <h3 className="mt-6 text-2xl font-semibold tracking-tight text-carbon">
@@ -55,7 +55,7 @@ function QuoteFormInner() {
         e.preventDefault();
         void submit(e.currentTarget);
       }}
-      className="rounded-4xl bg-cloud p-8 sm:p-10"
+      className="rounded-[2px] bg-cloud p-8 sm:p-10"
     >
       {/* Honeypot: hidden from humans, catches bots. */}
       <div aria-hidden className="hidden">
@@ -124,7 +124,7 @@ function QuoteFormInner() {
       </div>
 
       {status === "error" && error && (
-        <p className="mt-6 rounded-2xl bg-amber/10 px-4 py-3 text-sm text-amber">
+        <p className="mt-6 rounded-[2px] bg-amber/10 px-4 py-3 text-sm text-amber">
           {error} You can also reach us on{" "}
           <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`} className="underline">
             {contact.phone}
@@ -152,12 +152,13 @@ function QuoteFormInner() {
         :global(.input) {
           margin-top: 0.375rem;
           width: 100%;
-          border-radius: 0.875rem;
-          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 2px;
+          border: 1px solid rgba(0, 40, 85, 0.18);
           background: #fff;
           padding: 0.75rem 1rem;
           font-size: 0.95rem;
-          color: #1d1d1f;
+          color: #002855;
+          font-family: inherit;
           outline: none;
           transition: border-color 0.2s, box-shadow 0.2s;
         }
@@ -174,7 +175,7 @@ export default function QuoteForm() {
   return (
     <Suspense
       fallback={
-        <div className="rounded-4xl bg-cloud p-10">
+        <div className="rounded-[2px] bg-cloud p-10">
           <div className="h-6 w-48 animate-pulse rounded bg-white" />
         </div>
       }

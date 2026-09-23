@@ -75,7 +75,7 @@ export default function TradingPage() {
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2px]">
               <Image
                 src="/images/crude-tanker-port.png"
                 alt="Crude oil supertanker berthed at a marine import terminal"
@@ -118,7 +118,7 @@ export default function TradingPage() {
             {importCapabilities.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 90}>
                 <div className="card card-hover h-full bg-cloud">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-teal/10 text-teal">
                     <Icon name={c.icon} size={26} />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
@@ -138,7 +138,7 @@ export default function TradingPage() {
       <section className="section bg-navy-deep text-white">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[16/9] overflow-hidden rounded-4xl shadow-card">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[2px]">
               <Image
                 src="/images/global-trade.png"
                 alt="Global energy and shipping trade routes centred on Africa and the Middle East"
@@ -188,7 +188,7 @@ export default function TradingPage() {
             {tradedProducts.map((p, i) => (
               <Reveal key={p.name} delay={(i % 3) * 80}>
                 <div className="card h-full bg-cloud">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[2px] bg-white text-teal">
                     <Icon name="oil_barrel" size={24} />
                   </span>
                   <h3 className="mt-5 text-lg font-semibold tracking-tight text-carbon">

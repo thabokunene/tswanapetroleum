@@ -3,15 +3,17 @@ import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
 
-// Apple-style UI: Inter is the closest self-hosted substitute for SF Pro.
-// Loaded across the full weight range for large-and-light display headings.
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
-import "@fontsource/inter/800.css";
-import "@fontsource/inter/900.css";
+// Brand typography, self-hosted so no external font CDN is required.
+//   Display  — Proxima Nova (licensed, served when available) with Montserrat
+//              as the close geometric stand-in, per brand/brand-guidelines.md.
+//   Body     — Lato, as specified in the brand guidelines.
+// Latin subsets only: three weights each keeps the critical path light.
+import "@fontsource/montserrat/latin-400.css";
+import "@fontsource/montserrat/latin-600.css";
+import "@fontsource/montserrat/latin-700.css";
+import "@fontsource/lato/latin-300.css";
+import "@fontsource/lato/latin-400.css";
+import "@fontsource/lato/latin-700.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tswanapetroleum.co.za"),
