@@ -28,7 +28,7 @@ export default function ServicesPage() {
             <a
               key={s.slug}
               href={`#${s.slug}`}
-              className="inline-flex items-center gap-2 rounded-full bg-cloud px-5 py-2.5 text-sm font-medium text-carbon transition-colors hover:bg-teal/10 hover:text-teal"
+              className="inline-flex items-center gap-2 rounded-[2px] bg-cloud px-5 py-2.5 text-sm font-medium text-carbon transition-colors hover:bg-teal/10 hover:text-teal"
             >
               <Icon name={s.icon} size={18} />
               {s.name}
@@ -45,7 +45,7 @@ export default function ServicesPage() {
         >
           <div className="container-x grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
             <Reveal>
-              <span className="flex h-14 w-14 items-center justify-center rounded-3xl bg-teal/10 text-teal">
+              <span className="flex h-14 w-14 items-center justify-center rounded-[2px] bg-teal/10 text-teal">
                 <Icon name={s.icon} size={30} />
               </span>
               <h2 className="mt-6 display-lg">{s.name}</h2>
@@ -62,9 +62,9 @@ export default function ServicesPage() {
                 {s.features.map((f) => (
                   <div
                     key={f}
-                    className="flex items-start gap-3 rounded-2xl bg-cloud p-5"
+                    className="flex items-start gap-3 rounded-[2px] bg-cloud p-5"
                   >
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[2px] bg-teal text-white">
                       <Icon name="check" size={15} strokeWidth={2.25} />
                     </span>
                     <span className="text-[0.95rem] leading-relaxed text-carbon">
@@ -82,7 +82,7 @@ export default function ServicesPage() {
       <section className="section bg-carbon text-white">
         <div className="container-narrow text-center">
           <Reveal>
-            <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-3xl bg-white/10 text-teal-light">
+            <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-[2px] bg-white/10 text-teal-light">
               <Icon name="request_quote" size={30} />
             </span>
             <h2 className="mt-6 display-lg text-white">Open a trade account.</h2>

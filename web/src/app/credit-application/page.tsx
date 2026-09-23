@@ -42,7 +42,7 @@ export default function CreditApplicationPage() {
         <div className="container-x grid gap-6 py-14 md:grid-cols-3">
           {benefits.map((b) => (
             <div key={b.title} className="flex items-start gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[2px] bg-teal/10 text-teal">
                 <Icon name={b.icon} size={24} />
               </span>
               <div>
@@ -72,7 +72,7 @@ export default function CreditApplicationPage() {
                 "Start ordering with contract pricing and monthly billing.",
               ].map((step, i) => (
                 <li key={step} className="flex items-start gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-carbon text-sm font-semibold text-white">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[2px] bg-carbon text-sm font-semibold text-white">
                     {i + 1}
                   </span>
                   <span className="text-[0.95rem] leading-relaxed text-carbon">
@@ -82,7 +82,7 @@ export default function CreditApplicationPage() {
               ))}
             </ol>
 
-            <div className="mt-10 rounded-3xl bg-white p-7 shadow-soft">
+            <div className="mt-10 rounded-[2px] bg-white p-7">
               <h3 className="text-base font-semibold tracking-tight text-carbon">
                 Credit desk
               </h3>

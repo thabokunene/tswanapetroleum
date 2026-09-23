@@ -2,34 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- Tswana Petroleum Co. · Apple-style design tokens --- */
-:root {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "Segoe UI", Roboto, sans-serif;
+/* ==========================================================================
+   Tswana Petroleum Co. — editorial design system
+   --------------------------------------------------------------------------
+   A ruled, data-led system: hairline dividers instead of cards, a grid with
+   real margins, uppercase micro-labels, tabular numerals for anything numeric,
+   and a palette driven entirely by the brand guidelines:
+   Deep Navy #002855 · Tswana Teal #00A3A1 · Energy Mint #00C4B3 · Flame Amber #F5A623
+   ========================================================================== */
 
-  --tswana-teal: #00a3a1;
-  --deep-navy: #002855;
-  --energy-mint: #00c4b3;
-  --carbon: #1d1d1f;
-  --smoke: #6e6e73;
-  --cloud: #f5f5f7;
+:root {
+  /* Brand palette */
+  --navy: #002855;
+  --navy-deep: #001c3d;
+  --navy-ink: #00162f;
+  --teal: #00a3a1;
+  --mint: #00c4b3;
+  --amber: #f5a623;
+  --cloud: #f4f7f9;
+  --slate: #2d3436;
+  --smoke: #5a6b7b;
+
+  /* Type */
+  --font-display: "Proxima Nova", "Montserrat", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Lato", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* Structure */
+  --hairline: 1px solid rgba(0, 40, 85, 0.12);
+  --hairline-strong: 1px solid rgba(0, 40, 85, 0.28);
+  --hairline-invert: 1px solid rgba(255, 255, 255, 0.12);
+  --section-pad: clamp(4.5rem, 9vw, 9rem);
+  --container: 1200px;
+  --gutter: 24px;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  /* Clears the fixed header (60px bar on mobile; 40px strip + 72px bar on desktop). */
+  scroll-padding-top: 76px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 128px;
+  }
+}
+
 body {
-  @apply bg-white text-carbon antialiased;
-  font-family: var(--font-sans);
+  @apply bg-white text-navy antialiased;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 1.0625rem;
-  line-height: 1.55;
-  letter-spacing: -0.011em;
+  line-height: 1.65;
 }
 
 h1,
@@ -38,86 +69,367 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
-  color: var(--carbon);
+  font-family: var(--font-display);
+  color: var(--navy);
+  font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* Anything numeric gets tabular figures so columns line up. */
+table,
+.tabular,
+.numeral {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+::selection {
+  background: var(--teal);
+  color: #fff;
 }
 
 @layer components {
+  /* ---------------------------------------------------------------- layout */
   .container-x {
-    @apply mx-auto w-full max-w-[1120px] px-6 sm:px-8;
+    @apply mx-auto w-full;
+    max-width: var(--container);
+    padding-left: clamp(1.25rem, 4vw, 2.5rem);
+    padding-right: clamp(1.25rem, 4vw, 2.5rem);
   }
 
   .container-narrow {
-    @apply mx-auto w-full max-w-[720px] px-6;
-  }
-
-  /* --- Apple-style pill buttons --- */
-  .btn {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-full px-6 py-3 text-base font-medium transition-all duration-300 ease-apple focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
-    letter-spacing: -0.01em;
-  }
-
-  .btn-primary {
-    @apply btn bg-teal text-white hover:bg-teal-light hover:scale-[1.03];
-  }
-
-  .btn-dark {
-    @apply btn bg-carbon text-white hover:bg-black hover:scale-[1.03];
-  }
-
-  .btn-amber {
-    @apply btn bg-amber text-navy hover:brightness-105 hover:scale-[1.03];
-  }
-
-  .btn-outline {
-    @apply btn border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white/20;
-  }
-
-  /* Apple-style text link with chevron */
-  .link-arrow {
-    @apply inline-flex items-center gap-1 text-base font-medium text-teal transition-all duration-300 ease-apple hover:gap-2;
-  }
-
-  .eyebrow {
-    @apply text-sm font-semibold uppercase tracking-[0.12em] text-teal;
+    @apply mx-auto w-full max-w-[820px];
+    padding-left: clamp(1.25rem, 4vw, 2.5rem);
+    padding-right: clamp(1.25rem, 4vw, 2.5rem);
   }
 
   .section {
-    @apply py-24 md:py-32;
+    padding-top: var(--section-pad);
+    padding-bottom: var(--section-pad);
   }
 
-  /* Apple display headings: large, tight, semibold */
+  /* 12-column editorial grid — collapses to a single column on smaller screens */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+  @media (min-width: 768px) {
+    .grid-12 {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+  /* Below the grid's desktop breakpoint every child runs full width; the
+     column classes above then carve up the 12-column desktop grid. */
+  .grid-12 > * {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1024px) {
+    .col-2-3 {
+      grid-column: 2 / 4;
+    }
+    .col-2-6 {
+      grid-column: 2 / 7;
+    }
+    .col-3-10 {
+      grid-column: 3 / 11;
+    }
+    .col-2-10 {
+      grid-column: 2 / 11;
+    }
+    .col-6-12 {
+      grid-column: 6 / 13;
+    }
+    .col-8-12 {
+      grid-column: 8 / 13;
+    }
+  }
+
+  /* ---------------------------------------------------------------- type */
+  .micro-label {
+    @apply flex items-center gap-4 font-display text-[0.6875rem] font-bold uppercase;
+    letter-spacing: 0.16em;
+    color: var(--smoke);
+    margin-bottom: 2rem;
+  }
+  .micro-label::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 1px;
+    background: rgba(0, 40, 85, 0.15);
+  }
+  .micro-label-invert {
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .micro-label-invert::after {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .eyebrow {
+    @apply font-display text-[0.6875rem] font-bold uppercase;
+    letter-spacing: 0.16em;
+    color: var(--teal);
+  }
+
   .display-2xl {
-    @apply text-5xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-6xl lg:text-7xl;
+    @apply font-display font-bold uppercase;
+    font-size: clamp(2.75rem, 8.5vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
   }
 
   .display-xl {
-    @apply text-4xl font-semibold leading-[1.07] tracking-[-0.03em] sm:text-5xl lg:text-[3.5rem];
+    @apply font-display font-bold uppercase;
+    font-size: clamp(2.25rem, 5.2vw, 3.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
   }
 
   .display-lg {
-    @apply text-3xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-4xl lg:text-5xl;
+    @apply font-display font-bold uppercase;
+    font-size: clamp(1.875rem, 3.8vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+
+  .display-md {
+    @apply font-display font-semibold uppercase;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
   .lead {
-    @apply text-xl font-normal leading-relaxed text-smoke sm:text-2xl;
+    @apply font-body text-lg font-light;
+    line-height: 1.7;
+    color: var(--smoke);
+  }
+
+  /* Numerals: used for every stat, distance and figure on the site. */
+  .numeral-xl {
+    @apply font-display font-bold;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .numeral-lg {
+    @apply font-display font-bold;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .field-label {
+    @apply font-display text-[0.625rem] font-bold uppercase;
+    letter-spacing: 0.18em;
+    color: var(--smoke);
+  }
+
+  /* ---------------------------------------------------------------- rules */
+  .rule {
+    border: 0;
+    border-top: var(--hairline);
+  }
+  .rule-strong {
+    border: 0;
+    border-top: var(--hairline-strong);
+  }
+  .rule-invert {
+    border: 0;
+    border-top: var(--hairline-invert);
+  }
+
+  /* Label / value rows — the backbone of the data blocks. */
+  .field-row {
+    @apply flex items-baseline justify-between gap-6 py-3;
+    border-bottom: 1px solid rgba(0, 40, 85, 0.08);
+  }
+  .field-row:last-child {
+    border-bottom: 0;
+  }
+  .field-value {
+    @apply text-right font-body text-[0.95rem] text-navy;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  /* ---------------------------------------------------------------- tables */
+  .data-table {
+    @apply w-full border-collapse;
+  }
+  .data-table thead th {
+    @apply font-display text-[0.625rem] font-bold uppercase;
+    letter-spacing: 0.18em;
+    color: var(--smoke);
+    text-align: left;
+    padding: 0 1.25rem 1rem 0;
+    border-bottom: var(--hairline-strong);
+    vertical-align: bottom;
+  }
+  .data-table tbody td,
+  .data-table tbody th {
+    @apply align-top text-[0.9rem];
+    padding: 1.75rem 1.25rem 1.75rem 0;
+    border-bottom: var(--hairline);
+    color: var(--navy);
+  }
+  .data-table tbody tr {
+    transition: background-color 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .data-table tbody tr:hover {
+    background: rgba(0, 163, 161, 0.05);
+  }
+  .data-table tbody tr:hover .row-marker {
+    color: var(--teal);
+  }
+  .data-table .row-title {
+    @apply font-display text-[1.0625rem] font-bold no-underline;
     letter-spacing: -0.01em;
+    color: var(--navy);
+  }
+  .data-table .row-sub {
+    @apply mt-1 font-body text-[0.8rem];
+    color: var(--smoke);
+  }
+  .data-table .cell-list {
+    @apply font-body text-[0.85rem];
+    color: var(--smoke);
+  }
+  .data-table .cell-list li + li {
+    margin-top: 0.15rem;
+  }
+  .row-marker {
+    transition: color 200ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .data-table tbody tr:hover .row-marker-arrow {
+    transform: translate(3px, -3px);
   }
 
-  /* Apple-style soft cards */
+  /* Stacked table treatment for phones: each cell carries its own label. */
+  @media (max-width: 767px) {
+    .data-table thead {
+      display: none;
+    }
+    .data-table,
+    .data-table tbody,
+    .data-table tr,
+    .data-table th,
+    .data-table td {
+      display: block;
+      width: auto;
+    }
+    .data-table tbody tr {
+      padding: 1.5rem 0;
+      border-bottom: var(--hairline);
+      border-top: 0;
+    }
+    .data-table tbody th,
+    .data-table tbody td {
+      padding: 0.45rem 0;
+      border-bottom: 0;
+    }
+    .data-table tbody tr > th[scope="row"] {
+      padding-bottom: 1rem;
+    }
+    .data-table tbody td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 0.15rem;
+      font-family: var(--font-display);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--smoke);
+    }
+    .data-table tbody td:last-child {
+      text-align: left;
+    }
+  }
+
+  /* ---------------------------------------------------------------- buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[2px] font-display text-[0.8125rem] font-bold uppercase transition-all duration-300 ease-editorial focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
+    letter-spacing: 0.08em;
+    padding: 1rem 1.75rem;
+  }
+
+  .btn-primary {
+    @apply btn border border-teal bg-teal text-white hover:border-mint hover:bg-mint;
+  }
+
+  .btn-dark {
+    @apply btn border border-navy bg-navy text-white hover:bg-navy-deep;
+  }
+
+  .btn-amber {
+    @apply btn border border-amber bg-amber text-navy hover:brightness-105;
+  }
+
+  /* Outlined: the workhorse button of the new system. */
+  .btn-outline {
+    @apply btn border border-navy/25 bg-transparent text-navy hover:border-navy hover:bg-navy hover:text-white;
+  }
+
+  .btn-outline-invert {
+    @apply btn border border-white/30 bg-transparent text-white hover:border-white hover:bg-white hover:text-navy;
+  }
+
+  /* Text link with a travelling arrow — replaces the old pill link. */
+  .link-arrow {
+    @apply inline-flex items-center gap-2 font-display text-[0.8125rem] font-bold uppercase text-teal transition-all duration-300 ease-editorial hover:text-navy;
+    letter-spacing: 0.08em;
+  }
+  .link-arrow:hover svg {
+    transform: translateX(4px);
+  }
+  .link-arrow svg {
+    transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .link-arrow-invert {
+    @apply text-white hover:text-teal-light;
+  }
+
+  /* ---------------------------------------------------------------- blocks */
+  /* Ruled panel replacing the old rounded Apple card. */
   .card {
-    @apply rounded-3xl bg-cloud p-8 transition-all duration-500 ease-apple;
+    @apply relative border-t border-navy/[0.14] bg-transparent p-6;
+  }
+  .card-hover {
+    transition: border-color 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .card-hover:hover {
+    border-top-color: var(--teal);
   }
 
-  .card-hover:hover {
-    @apply -translate-y-1 shadow-card-hover;
+  .panel-dark {
+    background: var(--navy-deep);
+  }
+
+  .static-chip {
+    @apply inline-flex items-center gap-2 border border-navy/15 px-3 py-1.5 font-display text-[0.625rem] font-bold uppercase text-smoke;
+    letter-spacing: 0.14em;
+    border-radius: 2px;
+  }
+  .static-chip-invert {
+    @apply border-white/20 text-white/70;
   }
 }
 
-/* Teal-tinted headline accent (kept subtle, Apple-esque) */
+/* Teal accent for headline full stops / emphasis. */
 .text-teal-accent {
-  color: var(--tswana-teal);
+  color: var(--teal);
 }
 
 .text-gradient {
@@ -127,26 +439,53 @@ h6 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Spec-sheet and technical tables, clean Apple table styling */
+/* Technical specification matrix (product pages, TDS printouts). */
 .spec-table {
-  @apply w-full border-collapse text-[0.95rem];
+  @apply w-full border-collapse text-[0.9rem];
+  font-variant-numeric: tabular-nums lining-nums;
 }
 .spec-table th {
-  @apply border-b border-carbon/10 px-4 py-4 text-left font-semibold text-carbon;
+  @apply border-b border-navy/25 px-3 py-3.5 text-left font-display text-[0.625rem] font-bold uppercase text-smoke;
+  letter-spacing: 0.16em;
+  vertical-align: bottom;
 }
 .spec-table td {
-  @apply border-b border-carbon/[0.06] px-4 py-4 align-top text-smoke;
+  @apply border-b border-navy/10 px-3 py-3.5 align-top text-smoke;
 }
 .spec-table td:first-child {
-  @apply font-medium text-carbon;
+  @apply font-medium text-navy;
+}
+.spec-table tbody tr:hover {
+  background: rgba(0, 163, 161, 0.05);
 }
 .spec-table tr:last-child td {
-  @apply border-b-0;
+  border-bottom: 0;
+}
+
+/* Utility: everything numeric lines up. */
+.nums {
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 /* Print helpers for the TDS */
 @media print {
   .no-print {
     display: none !important;
+  }
+  .card,
+  .data-table tbody tr {
+    break-inside: avoid;
+  }
+}
+
+/* Respect reduced-motion preferences across the whole system. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

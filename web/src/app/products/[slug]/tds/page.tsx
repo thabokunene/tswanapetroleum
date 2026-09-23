@@ -44,7 +44,7 @@ export default function TDSPage({ params }: { params: { slug: string } }) {
       </div>
 
       {/* Sheet */}
-      <div className="mx-auto max-w-[820px] overflow-hidden rounded-3xl bg-white shadow-card print:max-w-none print:rounded-none print:shadow-none">
+      <div className="mx-auto max-w-[820px] overflow-hidden rounded-[2px] bg-white print:max-w-none print:rounded-none print:shadow-none">
         {/* Header band */}
         <div className="bg-brand-gradient px-10 py-10 text-white print:bg-navy">
           <div className="flex items-start justify-between gap-6">

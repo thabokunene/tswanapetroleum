@@ -12,28 +12,75 @@ const config: Config = {
         teal: {
           DEFAULT: "#00A3A1",
           light: "#00C4B3",
+          dark: "#00766F",
         },
         navy: {
           DEFAULT: "#002855",
-          deep: "#001c3d",
+          deep: "#001C3D",
+          ink: "#00162F",
         },
         amber: {
           DEFAULT: "#F5A623",
         },
-        cloud: "#F5F5F7", // Apple-style off-white
-        mist: "#FBFBFD", // near-white section base
-        carbon: "#1D1D1F", // Apple near-black text
-        smoke: "#6E6E73", // Apple secondary grey
+        // Energy Mint — the brand's interactive accent.
+        mint: "#00C4B3",
+        cloud: "#F4F7F9",
+        mist: "#FBFBFD",
+        carbon: "#0B1B2B",
+        smoke: "#5A6B7B",
+        slate: {
+          DEFAULT: "#2D3436",
+          line: "rgba(0,40,85,0.12)",
+        },
       },
       fontFamily: {
-        sans: [
+        // Proxima Nova when licensed/served, Montserrat (self-hosted) otherwise.
+        display: [
+          "Proxima Nova",
+          "Montserrat",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
-          "SF Pro Display",
           "Segoe UI",
           "sans-serif",
         ],
+        // `sans` is the default body stack; `body` is the explicit alias used
+        // by the component classes in globals.css.
+        sans: [
+          "Lato",
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+        body: [
+          "Lato",
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "SF Mono",
+          "Menlo",
+          "Consolas",
+          "monospace",
+        ],
+      },
+      letterSpacing: {
+        label: "0.16em",
+        display: "-0.03em",
+      },
+      // Editorial system: near-square corners everywhere, including the
+      // legacy 3xl/4xl/5xl tokens still referenced by inner pages.
+      borderRadius: {
+        "3xl": "2px",
+        "4xl": "2px",
+        "5xl": "3px",
       },
       backgroundImage: {
         "brand-gradient":
@@ -41,17 +88,14 @@ const config: Config = {
         "brand-gradient-soft":
           "linear-gradient(135deg, #002855 0%, #00A3A1 100%)",
       },
-      borderRadius: {
-        "4xl": "2rem",
-        "5xl": "2.5rem",
-      },
       boxShadow: {
-        card: "0 4px 24px -8px rgba(0, 40, 85, 0.12)",
-        "card-hover": "0 20px 60px -18px rgba(0, 40, 85, 0.25)",
-        soft: "0 2px 12px rgba(0, 0, 0, 0.04)",
+        card: "none",
+        "card-hover": "none",
+        soft: "none",
       },
       transitionTimingFunction: {
         apple: "cubic-bezier(0.22, 1, 0.36, 1)",
+        editorial: "cubic-bezier(0.2, 0.7, 0.2, 1)",
       },
       keyframes: {
         "fade-up": {
@@ -62,10 +106,15 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.9s cubic-bezier(0.22,1,0.36,1) both",
         "fade-in": "fade-in 1.2s ease-out both",
+        marquee: "marquee 60s linear infinite",
       },
     },
   },

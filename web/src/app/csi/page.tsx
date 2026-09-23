@@ -26,7 +26,7 @@ export default function CSIPage() {
       <section className="section bg-white">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2px]">
               <Image
                 src="/images/csi.png"
                 alt="Tswana Petroleum mentor guiding students through a STEM workshop"
@@ -80,7 +80,7 @@ export default function CSIPage() {
             {csiPillars.map((p, i) => (
               <Reveal key={p.title} delay={(i % 3) * 100}>
                 <div className="card card-hover h-full bg-cloud">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-teal shadow-soft">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-white text-teal">
                     <Icon name={p.icon} size={26} />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
@@ -117,7 +117,7 @@ export default function CSIPage() {
             {csiPrograms.map((prog, i) => (
               <Reveal key={prog.title} delay={(i % 2) * 90}>
                 <div className="card card-hover h-full bg-white">
-                  <span className="inline-flex rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal">
+                  <span className="inline-flex rounded-[2px] bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal">
                     {prog.tag}
                   </span>
                   <h3 className="mt-4 text-lg font-semibold tracking-tight text-carbon">

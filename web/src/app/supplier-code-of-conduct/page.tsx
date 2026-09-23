@@ -122,7 +122,7 @@ export default function SupplierCodeOfConductPage() {
             {principles.map((p, i) => (
               <Reveal key={p.title} delay={(i % 3) * 90}>
                 <div className="card h-full bg-white">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-teal/10 text-teal">
                     <Icon name={p.icon} size={26} />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold tracking-tight text-carbon">
@@ -131,7 +131,7 @@ export default function SupplierCodeOfConductPage() {
                   <ul className="mt-4 space-y-2.5">
                     {p.points.map((pt) => (
                       <li key={pt} className="flex items-start gap-2.5">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[2px] bg-teal text-white">
                           <Icon name="check" size={13} strokeWidth={2.25} />
                         </span>
                         <span className="text-[0.9rem] leading-relaxed text-smoke">

@@ -29,7 +29,7 @@ export default function BulkEstimator() {
     `&delivery=${encodeURIComponent(delivery)}`;
 
   return (
-    <div className="rounded-4xl bg-cloud p-8 sm:p-10">
+    <div className="rounded-[2px] bg-cloud p-8 sm:p-10">
       <div className="grid gap-8 md:grid-cols-2">
         <div>
           <label className="text-xs font-medium uppercase tracking-wide text-smoke">
@@ -123,12 +123,13 @@ export default function BulkEstimator() {
         :global(.est-input) {
           margin-top: 0.5rem;
           width: 100%;
-          border-radius: 0.875rem;
-          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 2px;
+          border: 1px solid rgba(0, 40, 85, 0.18);
           background: #fff;
           padding: 0.75rem 1rem;
           font-size: 0.95rem;
-          color: #1d1d1f;
+          color: #002855;
+          font-family: inherit;
           outline: none;
           transition: border-color 0.2s, box-shadow 0.2s;
         }

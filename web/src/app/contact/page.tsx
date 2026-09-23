@@ -61,7 +61,7 @@ export default function ContactPage() {
             <ul className="mt-8 space-y-5">
               {details.map((d) => (
                 <li key={d.label} className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cloud text-teal">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[2px] bg-cloud text-teal">
                     <Icon name={d.icon} size={22} />
                   </span>
                   <div>
@@ -85,7 +85,7 @@ export default function ContactPage() {
               ))}
             </ul>
 
-            <div className="mt-10 rounded-3xl bg-carbon p-8 text-white">
+            <div className="mt-10 rounded-[2px] bg-carbon p-8 text-white">
               <h3 className="text-lg font-semibold tracking-tight">
                 Become a supply partner
               </h3>

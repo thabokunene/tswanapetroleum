@@ -49,7 +49,7 @@ export default function CompliancePage() {
             {compliancePoints.map((c, i) => (
               <Reveal key={c.title} delay={(i % 2) * 90}>
                 <div className="card card-hover flex h-full items-start gap-4 bg-white">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-[2px] bg-teal text-white">
                     <Icon name="check" size={16} strokeWidth={2.25} />
                   </span>
                   <div>
@@ -80,8 +80,8 @@ export default function CompliancePage() {
           <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {advantages.map((a, i) => (
               <Reveal key={a.title} delay={(i % 3) * 90}>
-                <div className="h-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-colors duration-500 hover:bg-white/10">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal-light">
+                <div className="h-full rounded-[2px] border border-white/10 bg-white/5 p-8 backdrop-blur transition-colors duration-500 hover:bg-white/10">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-teal/10 text-teal-light">
                     <Icon name={a.icon} size={26} />
                   </span>
                   <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">

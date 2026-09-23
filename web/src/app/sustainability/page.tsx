@@ -71,7 +71,7 @@ export default function SustainabilityPage() {
       <section className="section bg-white">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-4xl shadow-card">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2px]">
               <Image
                 src="/images/hydrogen-facility.png"
                 alt="Green hydrogen production facility with solar and wind power"
@@ -135,7 +135,7 @@ export default function SustainabilityPage() {
             {pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
                 <div className="card card-hover h-full bg-cloud">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal/10 text-teal">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-teal/10 text-teal">
                     <Icon name={p.icon} size={26} />
                   </span>
                   <h3 className="mt-5 text-xl font-semibold tracking-tight text-carbon">
